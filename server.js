@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-
+const path = require("path")
 const productRouter = require("./routes/product.route");
 const userRouter = require("./routes/user.route");
 const { setServerConfiguration } = require("./config");
