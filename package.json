@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "cd shopping-cart && npm install && npm run build"
+    "heroku-postbuild": "cd shopping-cart && npm install && npm run build",
+    "start": "node server.js"
+
   },
   "author": "",
   "license": "ISC",
