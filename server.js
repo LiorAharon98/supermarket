@@ -7,7 +7,7 @@ const userRouter = require("./routes/user.route");
 const { setServerConfiguration } = require("./config");
 
 setServerConfiguration(app);
-mongoose.connect(process.env.port);
+mongoose.connect(process.env.PORT);
 
 app.use("/shopping-cart", productRouter);
 app.use("/user", userRouter);
@@ -16,4 +16,4 @@ app.use(express.static(path.join(__dirname,'/shopping-cart/build' )));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/shopping-cart/build', 'index.html'));
 });
-app.listen(process.env.PORT||5000);
+app.listen(process.env.PORT);
