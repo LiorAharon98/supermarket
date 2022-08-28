@@ -7,7 +7,7 @@ const userRouter = require("./routes/user.route");
 const { setServerConfiguration } = require("./config");
 
 setServerConfiguration(app);
-mongoose.connect("mongodb://localhost/shopping-cart-data-base");
+mongoose.connect("mongodb://localhost:27017/shopping-cart-data-base");
 
 app.use("/shopping-cart", productRouter);
 app.use("/user", userRouter);
