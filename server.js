@@ -7,7 +7,7 @@ const userRouter = require("./routes/user.route");
 const { setServerConfiguration } = require("./config");
 
 setServerConfiguration(app);
-mongoose.connect(process.env.PORT);
+mongoose.connect(process.env.DATABASE);
 
 app.use("/shopping-cart", productRouter);
 app.use("/user", userRouter);
