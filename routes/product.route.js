@@ -4,7 +4,7 @@ const ProductModel = require("../models/Product");
 const UserModel = require("../models/User");
 
 router.get("/", async (req, res) => {
-    UserModel.find({}, (err, obj) => {
+  UserModel.find({}, (err, obj) => {
     ProductModel.find({}, (err, obj2) => {
       const temp = [obj, obj2];
       res.json(temp);
@@ -27,9 +27,7 @@ router.post("/add-product", upload.single("product"), async (req, res) => {
 router.delete("/admin", async (req, res) => {
   let body = req.body.product;
   res.send(body);
- await ProductModel.deleteOne({ name: body }, (err, obj) => {
-    console.log("succeed");
-  });
+  await ProductModel.deleteOne({ name: body }, (err, obj) => {});
 });
 router.post("/admin", async (req, res) => {
   let price = req.body.price;
@@ -38,7 +36,7 @@ router.post("/admin", async (req, res) => {
   const update = { price: price };
   const opts = { new: true };
 
- await ProductModel.findOneAndUpdate(filter, update, opts);
+  await ProductModel.findOneAndUpdate(filter, update, opts);
 });
 
 module.exports = router;
