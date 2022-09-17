@@ -17,9 +17,18 @@ router.post("/sign-up", async (req, res) => {
     }
 });
 router.get("/sign-in", async (req, res) => {
-    UserModel.find({}, (err, obj) => {
+    await UserModel.find({}, (err, obj) => {
         res.json(obj);
       });
     });
+
+    router.post('/payment', async(req,res)=>{
+let body = req.body
+res.send(body)
+const filter = {username : body.username};
+const update = {shoppingHistory : body.total};
+const opts = { new: true };
+await UserModel.findOneAndUpdate(filter,{$push : update},opts)
+    })
 
 module.exports = router;
