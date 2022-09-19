@@ -1,0 +1,51 @@
+
+.products_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 140vh;
+ 
+}
+#option_btn{
+  width: 150px;
+  height: 35px;
+  font-size: 20px;
+  text-decoration: underline;
+}
+.users_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh;
+}
+.buttons {
+  margin: 5px;
+  width: 90px;
+  height: 80px;
+  background-color: white;
+  font-size: 18px;
+  text-decoration: underline;
+  border-radius: 10px;
+}
+.table_products_container{
+font-size: 20px;
+  width: 80%;
+}
+.table_users_container{
+  font-size: 25px;
+  width: 50%;
+}
+
+.menu_container{
+  background-color: white;
+}
+.menu{
+  text-align: center;
+  margin-top: 10px;
+  font-size: 20px;
+  text-decoration: underline;
+  list-style-type: none;
+}
+.thead{
+  background-color: white;
+}

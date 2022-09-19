@@ -1,0 +1,11 @@
+#category_hamburger {
+    height: 40px;
+    width: 40px;
+  }
+  .hamburger {
+    margin: 3px;
+    height: 10px;
+  
+    border-radius: 10px;
+    background-color: white;
+  }

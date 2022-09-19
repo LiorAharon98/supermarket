@@ -1,0 +1,29 @@
+.products_container {
+  display: flex;
+
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#user_name_products {
+  text-align: center;
+  color: white;
+  margin: 0px;
+}
+
+.menu_container {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+  #category_hamburger {
+    position: sticky;
+    top: 20px;
+  }
+  .test {
+    display: flex;
+    justify-content: space-between;
+  }
+}

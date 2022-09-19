@@ -1,0 +1,7 @@
+
+
+.menu_container {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+  }

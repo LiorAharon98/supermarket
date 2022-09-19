@@ -1,0 +1,19 @@
+.container{
+    display: flex;
+flex-direction: column;
+}
+#inp {
+    border-radius: 10px;
+    border: solid 1px rgb(180, 180, 180);
+    width: 100px;
+    height: 25px;
+    margin: 5px;
+    outline: none;
+}
+#button{
+    width: 110px;
+    border-radius: 10px;
+    border: solid 1px white;
+    height: 25px;
+margin-top: 10px;
+}

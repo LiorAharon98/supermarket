@@ -1,0 +1,39 @@
+.container {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  height: 75%;
+  position: fixed;
+  bottom: 95px;
+  background-color: white;
+  width: 200px;
+}
+
+.container2 {
+  display: flex;
+}
+.category_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  list-style: none;
+  width: 250px;
+  align-items: center;
+}
+.li_category {
+  color: black;
+  font-size: 22px;
+  text-decoration: underline;
+  margin: 2px;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    border-radius: 0px;
+  }
+}

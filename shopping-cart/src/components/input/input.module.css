@@ -1,0 +1,25 @@
+.inp_sign_up{
+    margin: 5px;
+    height: 30px;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    outline-color: rgb(0, 147, 0);
+}
+.inp_sign_up_error{
+    margin: 5px;
+    height: 30px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid red;
+    outline-color: rgb(0, 147, 0);
+
+}
+.error{
+    margin: 0;
+    padding: 0px;
+color : red;
+text-decoration: underline;
+text-align: center;
+
+}
