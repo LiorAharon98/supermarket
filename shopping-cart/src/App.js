@@ -7,12 +7,10 @@ import PaymentPage from "./pages/paymentPage/PaymentPage";
 import AdminPage from "./pages/adminPage/AdminPage";
 import AddProductsPage from "./pages/addProductsPage/AddProductsPage";
 import Header from "./components/header/Header";
-import HomepageHeader from "./components/homepage_header/HomepageHeader";
 const App = () => {
   return (
     <>
       <BrowserRouter basename="/shopping-cart">
-        <HomepageHeader/>
         <Header />
 
         <Routes>

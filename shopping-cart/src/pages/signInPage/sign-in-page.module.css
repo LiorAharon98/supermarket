@@ -1,10 +1,8 @@
 .form_container {
   display: flex;
   justify-content: center;
-  justify-content: flex-end;
   align-items: center;
-  min-height: 65vh;
-  width: 85%;
+  min-height: 85vh;
 }
 .sign_in_container {
   width: 300px;

@@ -9,14 +9,15 @@ export const useDataProvider = () => {
 };
 
 const DataProvider = ({ children }) => {
+
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
   const [cart, setCart] = useState([]);
   const [toggleLogOut, setToggleLogOut] = useState(false);
   const [toggleSort, setSort] = useState(false);
-
+const baseUrl = 'http://localhost:5000/shopping-cart'
   useEffect(() => {
-    Axios.get("http://localhost:5000/shopping-cart").then((response) => {
+    Axios.get(baseUrl).then((response) => {
       const data = {
         users: response.data[0],
         products: response.data[1],
@@ -27,11 +28,11 @@ const DataProvider = ({ children }) => {
   }, []);
 
   const addProducts = (addedProducts) => {
-    Axios.post("http://localhost:5000/shopping-cart/add-product", addedProducts).then((response) => {});
+    Axios.post(`${baseUrl}/add-product`, addedProducts).then((response) => {});
   };
   const deleteProduct = (productName) => {
     const product = { product: productName };
-    Axios.delete("http://localhost:5000/shopping-cart/admin", {
+    Axios.delete(`${baseUrl}/admin`, {
       data: product,
       headers: {
         Accept: "application/json; charset=utf-8",
@@ -48,7 +49,7 @@ const DataProvider = ({ children }) => {
       password,
       shoppingHistory: [],
     };
-    Axios.post("http://localhost:5000/shopping-cart/user/sign-up", user).then((response) => {
+    Axios.post(`${baseUrl}/user/sign-up`, user).then((response) => {
       console.log(response);
     });
   };
@@ -62,7 +63,7 @@ const DataProvider = ({ children }) => {
 
   const addProductToUser = (username, total) => {
     const user = { username, total };
-    Axios.post("http://localhost:5000/shopping-cart/user/payment", user).then((response) => {
+    Axios.post(`${baseUrl}/user/payment`, user).then((response) => {
       console.log(response);
     });
 
@@ -81,7 +82,7 @@ const DataProvider = ({ children }) => {
   };
   const updateProductPrice = (updatePrice, productName) => {
     const product = { price: updatePrice, productName: productName };
-    Axios.post("http://localhost:5000/shopping-cart/admin", product).then((response) => {
+    Axios.post(`${baseUrl}/admin`, product).then((response) => {
       console.log(response);
     });
   };

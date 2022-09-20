@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDataProvider } from "../../context/DataProvider";
-import Button from "../button/Button";
 import style from "./products.module.css";
 const Products = ({ name, price, picture }) => {
   const { t } = useTranslation();
