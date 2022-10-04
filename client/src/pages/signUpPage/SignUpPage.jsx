@@ -22,7 +22,7 @@ const SignUpPage = () => {
   });
 
   const navigate = useNavigate();
-  const pwd = watch('password')
+  const pwd = watch("password");
   const { addUser, isUserExist } = useDataProvider();
 
   const { t } = useTranslation();
@@ -45,7 +45,11 @@ const SignUpPage = () => {
           />
           <Input name="email" control={control} rules={{ required: "fill please" }} />
           <Input name="password" control={control} rules={{ required: "fill please" }} />
-          <Input name="confirm password" control={control} rules={{required : 'fill please' ,validate : value=>value === pwd || 'password not match'}} />
+          <Input
+            name="confirm password"
+            control={control}
+            rules={{ required: "fill please", validate: (value) => value === pwd || "password not match" }}
+          />
 
           {toggleError && <h2>user already exist</h2>}
           <Button onClick={handleSubmit(handleClick)} text={t("signup")} />
