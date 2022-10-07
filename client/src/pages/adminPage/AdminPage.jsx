@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "./admin-page.module.css";
 import { useDataProvider } from "../../context/DataProvider";
 import AdminProductsManager from "../../components/admin_products_manager/AdminProductsManager";
 import UsersPage from "../usersPage/UsersPage";
 import HamburgerMenu from "../../components/hamburger_menu/HamburgerMenu";
-import { useTranslation } from "react-i18next";
 const AdminPage = () => {
-  const { users, products } = useDataProvider();
+  const { users, products, changeLanguage } = useDataProvider();
   const navigate = useNavigate();
-  const { t } = useTranslation();
   const [toggleAdminOptions, setToggleAdminOption] = useState(0);
   const [displayOption, setDisplayOption] = useState(false);
 
@@ -29,7 +27,7 @@ const AdminPage = () => {
   };
 
   const li = [
-    { label: "products", onclick: adminOption.bind(this, 0) },
+    { label: "Products", onclick: adminOption.bind(this, 0) },
     { label: "users", onclick: adminOption.bind(this, 1) },
     { label: "add product", onclick: navigateFunc.bind(this, "addProduct") },
     { label: "logout", onclick: navigateFunc.bind(this, "logout") },
@@ -38,20 +36,16 @@ const AdminPage = () => {
     <>
       <div className={style.admin_container}>
         <HamburgerMenu onclick={displayCategoryFunc} />
-        <div>
-          {displayOption && (
-            <div className={style.menu_container}>
-              <ul>
-                {li.map((li, index) => {
-                  return (
-                    <li className={style.menu} key={index} onClick={li.onclick}>
-                      {t(li.label.replace(/\s/g, ""))}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
+
+        <div className={displayOption ? style.menu_container : style.menu_inactive}>
+          {displayOption &&
+            li.map((li, index) => {
+              return (
+                <li className={style.menu} key={index} onClick={li.onclick}>
+                  {changeLanguage(li.label)}
+                </li>
+              );
+            })}
         </div>
 
         {toggleAdminOptions === 0 && (

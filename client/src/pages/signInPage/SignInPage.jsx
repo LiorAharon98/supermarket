@@ -16,21 +16,20 @@ const SignInPage = () => {
     username: "",
     password: "",
   });
-  const { t } = useTranslation();
-  const { specificUser } = useDataProvider();
+  const { specificUser,changeLanguage } = useDataProvider();
   const navigate = useNavigate();
   const [errorDetails, setErrorDetails] = useState("");
   const handleClick = (data) => {
     const {username,password} = data
     if (username === "Admin" && password === "1111") return navigate("/admin");
-    if (!specificUser(password, username)) return setErrorDetails("not found");
+    if (!specificUser(password, username)) return setErrorDetails("username not found");
     specificUser(password, username);
     navigate("/products", { state: specificUser(password, username) });
   };
   return (
     <form className={style.form_container}>
       <div>
-        <h1 id={style.tag}>{t("signin")}</h1>
+        <h1 id={style.tag}>{changeLanguage("Sign in")}</h1>
         <div className={style.sign_in_container}>
           <Input
             control={control}
@@ -42,8 +41,8 @@ const SignInPage = () => {
             name="password"
             rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
           />
-          {errorDetails !== "" && <p id={style.errorDetails}>{t(errorDetails.replace(/\s/g, ""))}!</p>}
-          <Button onClick={handleSubmit(handleClick)} text={t("signin")} />
+          {errorDetails !== "" && <p id={style.errorDetails}>{changeLanguage(errorDetails)}!</p>}
+          <Button to={'/'} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign in")} />
         </div>
       </div>
     </form>

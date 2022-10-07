@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+}
+
+#about{
+    background-color: rgba(0, 76, 255, 0.824);
+    width: 34%;
+    height: 210px;
+
+}
+#support{
+    background-color: rgba(22, 143, 203, 0.776);
+    width: 34%;
+    height: 210px;
+
+}
+#other{
+    background-color: rgba(0, 200, 255, 0.825);
+    width: 34%;
+    height: 210px;
+
+}
+
+@media screen and (max-width : 768px) {
+    .container{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    #about{
+        width: 100%;
+    }
+    #support{
+        width: 100%;
+    }
+    #other{
+        width: 100%;
+    }
+}

@@ -18,8 +18,9 @@
 .add_btn {
   border: none;
   background-color: rgb(242, 63, 63);
-  border-radius: 10px;
-  width: 90px;
+  border-radius: 5px;
+  width: 150px;
+  margin-bottom: 5px;
   height: 25px;
   color: white;
 }

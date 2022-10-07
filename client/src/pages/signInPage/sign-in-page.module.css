@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 85vh;
+  min-height: 70vh;
 }
 .sign_in_container {
   width: 300px;

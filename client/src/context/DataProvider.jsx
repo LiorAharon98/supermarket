@@ -1,7 +1,8 @@
 import { useContext, createContext, useState } from "react";
 import Axios from "axios";
-import "../components/LanguageData";
 import { useEffect } from "react";
+// import {Use} from "i18next";
+import {useTranslation} from "react-i18next"
 
 export const DataContext = createContext();
 export const useDataProvider = () => {
@@ -9,14 +10,14 @@ export const useDataProvider = () => {
 };
 
 const DataProvider = ({ children }) => {
-
   const [products, setProducts] = useState([]);
+  const {t} = useTranslation()
   const [users, setUsers] = useState([]);
   const [cart, setCart] = useState([]);
   const [toggleLogOut, setToggleLogOut] = useState(false);
   const [toggleSort, setSort] = useState(false);
-const baseUrl = 'http://localhost:5000/shopping-cart'
-  useEffect(() => {
+  const baseUrl = "https://node-js-shopping-cart.herokuapp.com/shopping-cart";
+  const fetchData = () => {
     Axios.get(baseUrl).then((response) => {
       const data = {
         users: response.data[0],
@@ -25,10 +26,17 @@ const baseUrl = 'http://localhost:5000/shopping-cart'
       setUsers(data.users);
       setProducts(data.products);
     });
+  };
+  useEffect(() => {
+    fetchData();
   }, []);
-
+const changeLanguage = (value)=>{
+  return t(value)
+}
   const addProducts = (addedProducts) => {
-    Axios.post(`${baseUrl}/add-product`, addedProducts).then((response) => {});
+    Axios.post(`${baseUrl}/add-product`, addedProducts).then((response) => {
+      fetchData();
+    });
   };
   const deleteProduct = (productName) => {
     const product = { product: productName };
@@ -39,7 +47,7 @@ const baseUrl = 'http://localhost:5000/shopping-cart'
         "Content-Type": "application/json",
       },
     }).then((response) => {
-      console.log(response);
+      fetchData();
     });
   };
   const addUser = (username, email, password) => {
@@ -50,7 +58,7 @@ const baseUrl = 'http://localhost:5000/shopping-cart'
       shoppingHistory: [],
     };
     Axios.post(`${baseUrl}/user/sign-up`, user).then((response) => {
-      console.log(response);
+      fetchData();
     });
   };
   const specificUser = (password, username) => {
@@ -64,7 +72,7 @@ const baseUrl = 'http://localhost:5000/shopping-cart'
   const addProductToUser = (username, total) => {
     const user = { username, total };
     Axios.post(`${baseUrl}/user/payment`, user).then((response) => {
-      console.log(response);
+      fetchData();
     });
 
     setCart([]);
@@ -83,7 +91,7 @@ const baseUrl = 'http://localhost:5000/shopping-cart'
   const updateProductPrice = (updatePrice, productName) => {
     const product = { price: updatePrice, productName: productName };
     Axios.post(`${baseUrl}/admin`, product).then((response) => {
-      console.log(response);
+      fetchData();
     });
   };
   const sortProductsByPrice = (sortPrice) => {
@@ -119,6 +127,9 @@ const baseUrl = 'http://localhost:5000/shopping-cart'
     addProductToUser,
     addToCart,
     cart,
+    products,
+    baseUrl,
+    changeLanguage
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

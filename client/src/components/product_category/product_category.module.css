@@ -1,4 +1,4 @@
-.container {
+.container_active {
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -7,6 +7,11 @@
   bottom: 95px;
   background-color: white;
   width: 200px;
+  transition: 600ms;
+}
+.container_inactive {
+  width: 0px;
+  transition: 600ms;
 }
 
 .container2 {
@@ -29,7 +34,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .container {
+  .container_active {
     height: 100%;
     position: fixed;
     top: 0px;

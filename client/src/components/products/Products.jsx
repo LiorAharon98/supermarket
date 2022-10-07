@@ -5,7 +5,7 @@ import style from "./products.module.css";
 const Products = ({ name, price, picture }) => {
   const { t } = useTranslation();
   const [countItems, setCountItems] = useState(0);
-  const { addToCart } = useDataProvider();
+  const { addToCart,products,baseUrl } = useDataProvider();
   const countItemsFunc = () => {
     setCountItems((prev) => {
       return prev + 1;
@@ -15,7 +15,7 @@ const Products = ({ name, price, picture }) => {
   return (
     <div className={style.products}>
       <div>
-        <img className={style.product_img} src={`http://localhost:5000/public/images/${picture}`} alt="error" />
+        <img className={style.product_img} src={`${baseUrl}/public/images}`} alt="error" />
         <p>{t(name.replace(/\s/g, ""))}</p>
         <p>{price}₪</p>
 

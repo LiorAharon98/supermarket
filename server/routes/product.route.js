@@ -3,13 +3,13 @@ const { upload } = require("../config");
 const ProductModel = require("../models/Product");
 const UserModel = require("../models/User");
 
-router.get("/", async (req, res) => {
-  UserModel.find({}, (err, obj) => {
-    ProductModel.find({}, (err, obj2) => {
-      const temp = [obj, obj2];
+router.get("/", async(req, res) => {
+   await UserModel.find({}, (err, users) => {
+    ProductModel.find({}, (err, products) => {
+      const temp = [users, products];
       res.json(temp);
     });
-  });
+  }).clone();
 });
 
 router.post("/add-product", upload.single("product"), async (req, res) => {
@@ -22,12 +22,13 @@ router.post("/add-product", upload.single("product"), async (req, res) => {
     category: body[2],
     picture: img,
   });
-  res.send(img);
+  res.json("ok");
 });
 router.delete("/admin", async (req, res) => {
   let body = req.body.product;
   res.send(body);
   await ProductModel.deleteOne({ name: body }, (err, obj) => {});
+  res.json("ok");
 });
 router.post("/admin", async (req, res) => {
   let price = req.body.price;
@@ -37,6 +38,7 @@ router.post("/admin", async (req, res) => {
   const opts = { new: true };
 
   await ProductModel.findOneAndUpdate(filter, update, opts);
+  res.json("ok");
 });
 
 module.exports = router;

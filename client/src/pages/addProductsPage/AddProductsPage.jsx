@@ -1,17 +1,15 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { useTranslation } from "react-i18next";
+import Button from "../../components/button/Button";
 import { useDataProvider } from "../../context/DataProvider";
 import style from "./add-product-page.module.css";
 const AddProductsPage = () => {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const nameInp = useRef();
   const priceInp = useRef();
   const categoryInp = useRef();
   const imgInp = useRef();
-  const { addProducts } = useDataProvider();
+  const { addProducts, changeLanguage } = useDataProvider();
 
   const inp = [
     { type: "text", placeholder: "name", ref: nameInp },
@@ -46,30 +44,29 @@ const AddProductsPage = () => {
   };
   return (
     <div>
-      <form onSubmit={handleClick}>
-        <h1 id={style.add_product_tag}>{t("addproduct")}!</h1>
-        <div className={style.container}>
-          <div className={style.add_product_container}>
-            {inp.map((input, index) => {
-              return (
-                <input
-                  key={index}
-                  className={style.inp}
-                  type={input.type}
-                  placeholder={input.placeholder}
-                  ref={input.ref}
-               
-                ></input>
-              );
-            })}
-            <input type="file" id="inputFile" style={{display: 'none'}}  />
-            <label className={style.inpFile}  htmlFor="inputFile">{t('upload'.replace(/\s/g, ""))}</label>
-            <div>
-              <button id={style.add_btn}>{t("add")}</button>
-            </div>
+      <h1 id={style.add_product_tag}>{changeLanguage("add product")}!</h1>
+      <div className={style.container}>
+        <div className={style.add_product_container}>
+          {inp.map((input, index) => {
+            return (
+              <input
+                key={index}
+                className={style.inp}
+                type={input.type}
+                placeholder={input.placeholder}
+                ref={input.ref}
+              ></input>
+            );
+          })}
+          <input ref={imgInp} type="file" id="inputFile" style={{ display: "none" }} />
+          <label className={style.inpFile} htmlFor="inputFile">
+            {changeLanguage("upload")}
+          </label>
+          <div>
+            <Button to={"/"} text={"add"} onClick={handleClick} />
           </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

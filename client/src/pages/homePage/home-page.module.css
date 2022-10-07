@@ -1,45 +1,34 @@
 body {
-  background-image: url("/public/pictures/apple.jpg");
-
+  background-image: url("/public/pictures/background.webp");
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
 }
-.page_container {
-  height: 500px;
-  display: flex;
-  align-items: center;
-  min-height: 90vh;
-  justify-content: center;
-}
+
 .div_container {
+  min-height: 65vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 70vh;
-}
-.buttons_container {
-  align-items: center;
-  background-color: rgba(211, 211, 211, 0.888);
-  display: flex;
-  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-around;
-  width: 300px;
-  height: 450px;
-  border-radius: 10px;
+  flex-direction: column;
+  padding-left: 50px;
 }
 
 #tag {
   color: white;
+  padding-left: 40px;
 }
 
-.li{
-  text-decoration: underline;
-  font-size: 18px;
-  color: red;
-  background-color: rgba(12, 10, 10, 0.916);
-  padding: 5px;
-  border-radius: 5px;
-  
+@media screen and (max-width: 768px) {
+  body {
+    background-position: 100%;
+  }
+
+  .div_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #tag {
+    text-align: center;
+  }
 }

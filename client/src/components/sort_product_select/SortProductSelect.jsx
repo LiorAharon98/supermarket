@@ -21,13 +21,13 @@ const SortProductSelect = () => {
       }}
     >
       <option className={style.option_container} value="">
-        {t("sort_price")}
+        {t("sort price")}
       </option>
       <option className={style.option_container} value="low">
-        {t("low_to_high")}
+        {t("low to high")}
       </option>
       <option className={style.option_container} value="high">
-        {t("high_to_low")}
+        {t("high to low")}
       </option>
     </select>
   );

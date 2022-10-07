@@ -23,12 +23,9 @@ const SignUpPage = () => {
 
   const navigate = useNavigate();
   const pwd = watch("password");
-  const { addUser, isUserExist } = useDataProvider();
-
-  const { t } = useTranslation();
+  const { addUser, isUserExist, changeLanguage } = useDataProvider();
 
   const handleClick = (data) => {
-    console.log(data);
     if (isUserExist(data.username)) return setToggleError("error");
     addUser(data.username, data.email, data.password);
     navigate("/user/sign-in");
@@ -36,7 +33,7 @@ const SignUpPage = () => {
   return (
     <form className={style.form_container}>
       <div>
-        <h1 id={style.sign_up_tag}>{t("signup")}</h1>
+        <h1 id={style.sign_up_tag}>{changeLanguage("Sign up")}</h1>
         <div className={style.sign_up_container}>
           <Input
             name="username"
@@ -51,8 +48,8 @@ const SignUpPage = () => {
             rules={{ required: "fill please", validate: (value) => value === pwd || "password not match" }}
           />
 
-          {toggleError && <h2>user already exist</h2>}
-          <Button onClick={handleSubmit(handleClick)} text={t("signup")} />
+          {toggleError && <h2>{changeLanguage('user already exist')}</h2>}
+          <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign up")} />
         </div>
       </div>
     </form>

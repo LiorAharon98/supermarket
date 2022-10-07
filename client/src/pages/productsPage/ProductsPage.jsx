@@ -7,10 +7,8 @@ import ProductCategory from "../../components/product_category/ProductCategory";
 import HamburgerMenu from "../../components/hamburger_menu/HamburgerMenu";
 import { useState } from "react";
 import Button from "../../components/button/Button";
-import { useTranslation } from "react-i18next";
 const ProductsPage = () => {
-  const { t } = useTranslation();
-  const { products, addToCart, cart } = useDataProvider();
+  const { products, addToCart, cart, changeLanguage } = useDataProvider();
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -32,9 +30,13 @@ const ProductsPage = () => {
       <HamburgerMenu onclick={displayCategoryFunc} />
 
       <h1 id={styles.user_name_products}>
-        {t("hello")} {state?.username}
+        {changeLanguage("hello")} {state?.username}
       </h1>
-      {displayCategory && <ProductCategory categoryFilter={categoryFilter} displayCategoryFunc={displayCategoryFunc} />}
+      <ProductCategory
+        displayCategory={displayCategory}
+        categoryFilter={categoryFilter}
+        displayCategoryFunc={displayCategoryFunc}
+      />
       <div className={styles.products_container}>
         {toggleProducts === "all"
           ? products.map((product, index) => {
@@ -51,8 +53,10 @@ const ProductsPage = () => {
       <div className={styles.payment_btn_container}>
         {cart.length > 0 && (
           <Button
-            text={t("payment")}
-            onClick={() => {
+            to={"/"}
+            text={changeLanguage("payment")}
+            onClick={(e) => {
+              e.preventDefault();
               navigate("/user/payment", { state: { cart, user: state } });
             }}
           />
