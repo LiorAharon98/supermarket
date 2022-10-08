@@ -40,14 +40,14 @@ const ProductsPage = () => {
       <div className={styles.products_container}>
         {toggleProducts === "all"
           ? products.map((product, index) => {
-              return <Products key={index} {...product} addToCart={addToCart} />;
+              return <Products index= {index} key={index} {...product} addToCart={addToCart} />;
             })
           : products
               .filter((product) => {
                 return product.category === toggleProducts;
               })
               .map((product, index) => {
-                return <Products key={index} {...product} addToCart={addToCart} />;
+                return <Products index={index} key={index} {...product} addToCart={addToCart} />;
               })}
       </div>
       <div className={styles.payment_btn_container}>

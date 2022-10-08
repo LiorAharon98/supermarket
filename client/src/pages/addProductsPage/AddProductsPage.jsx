@@ -26,20 +26,16 @@ const AddProductsPage = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const formData = new FormData();
 
     const name = nameInp.current.value;
     const price = priceInp.current.value;
     const category = categoryInp.current.value;
 
     const picture = imgInp.current.files[0];
-    formData.append("product", name);
-    formData.append("product", price);
-    formData.append("product", category);
-    formData.append("product", picture);
+    const product = [name, price, category];
 
     if (checkInp(name, price)) return alert("incorrect details");
-    addProducts(formData);
+    addProducts(product, picture);
     navigate("/admin");
   };
   return (

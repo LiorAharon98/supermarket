@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useDataProvider } from "../../context/DataProvider";
 import style from "./products.module.css";
-const Products = ({ name, price, picture }) => {
-  const { t } = useTranslation();
+const Products = ({ name, price,pictureUrl }) => {
   const [countItems, setCountItems] = useState(0);
-  const { addToCart,products,baseUrl } = useDataProvider();
+  const { addToCart, changeLanguage } = useDataProvider();
   const countItemsFunc = () => {
     setCountItems((prev) => {
       return prev + 1;
@@ -15,8 +13,8 @@ const Products = ({ name, price, picture }) => {
   return (
     <div className={style.products}>
       <div>
-        <img className={style.product_img} src={`${baseUrl}/public/images}`} alt="error" />
-        <p>{t(name.replace(/\s/g, ""))}</p>
+        <img className={style.product_img} src={pictureUrl} alt="error" />
+        <p>{changeLanguage(name)}</p>
         <p>{price}₪</p>
 
         <button
@@ -26,7 +24,7 @@ const Products = ({ name, price, picture }) => {
             addToCart(name, price);
           }}
         >
-          {countItems > 0 ? t("added") : t("add")}!
+          {countItems > 0 ? changeLanguage("added") : changeLanguage("add")}!
         </button>
       </div>
     </div>

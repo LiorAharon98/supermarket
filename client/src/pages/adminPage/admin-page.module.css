@@ -26,6 +26,8 @@
   transition: 1s;
 }
 .menu_container_inactive {
+  width: 0px;
+  height: 0px;
   transition: 1s;
 }
 .menu {

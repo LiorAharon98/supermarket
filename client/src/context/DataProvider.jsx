@@ -1,8 +1,9 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
+import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
 import Axios from "axios";
-import { useEffect } from "react";
-// import {Use} from "i18next";
-import {useTranslation} from "react-i18next"
+import { useTranslation } from "react-i18next";
+
+import { storage } from "../firebase";
 
 export const DataContext = createContext();
 export const useDataProvider = () => {
@@ -10,8 +11,10 @@ export const useDataProvider = () => {
 };
 
 const DataProvider = ({ children }) => {
+  const imageRef = ref(storage, "/products-images");
+  const [images, setImages] = useState([]);
   const [products, setProducts] = useState([]);
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const [users, setUsers] = useState([]);
   const [cart, setCart] = useState([]);
   const [toggleLogOut, setToggleLogOut] = useState(false);
@@ -27,16 +30,26 @@ const DataProvider = ({ children }) => {
       setProducts(data.products);
     });
   };
+
   useEffect(() => {
     fetchData();
   }, []);
-const changeLanguage = (value)=>{
-  return t(value)
-}
-  const addProducts = (addedProducts) => {
-    Axios.post(`${baseUrl}/add-product`, addedProducts).then((response) => {
-      fetchData();
-    });
+  const changeLanguage = (value) => {
+    return t(value);
+  };
+  const addProducts = (addedProducts, picture) => {
+    const storageRef = ref(storage, `/products-images/${picture.name}`);
+
+    uploadBytes(storageRef, picture)
+      .then((snapshot) => {})
+      .then(() => {
+        getDownloadURL(storageRef).then((res) => {
+          const result = [...addedProducts, res];
+          Axios.post(`${baseUrl}/add-product`, result).then((response) => {
+            fetchData();
+          });
+        });
+      });
   };
   const deleteProduct = (productName) => {
     const product = { product: productName };
@@ -129,7 +142,8 @@ const changeLanguage = (value)=>{
     cart,
     products,
     baseUrl,
-    changeLanguage
+    changeLanguage,
+    images,
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

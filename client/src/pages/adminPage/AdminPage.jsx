@@ -35,8 +35,8 @@ const AdminPage = () => {
   return (
     <>
       <div className={style.admin_container}>
-        <HamburgerMenu onclick={displayCategoryFunc} />
 
+          <HamburgerMenu onclick={displayCategoryFunc} />
         <div className={displayOption ? style.menu_container : style.menu_inactive}>
           {displayOption &&
             li.map((li, index) => {
@@ -47,6 +47,7 @@ const AdminPage = () => {
               );
             })}
         </div>
+
 
         {toggleAdminOptions === 0 && (
           <div className={style.products_container}>

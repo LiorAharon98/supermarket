@@ -4,7 +4,7 @@ import { useDataProvider } from "../../context/DataProvider";
 import Button from "../button/Button";
 import style from "./admin_products_manager.module.css";
 import UpdatePrice from "../update_price/UpdatePrice";
-const AdminProductsManager = ({ name, price, picture }) => {
+const AdminProductsManager = ({ name, price, pictureUrl }) => {
   const { deleteProduct, changeLanguage } = useDataProvider();
   const [updatePriceToggle, setUpdatePriceToggle] = useState(false);
   const deleteFunc = (e) => {
@@ -20,10 +20,10 @@ const AdminProductsManager = ({ name, price, picture }) => {
       <thead className={style.thead_container}>
         <tr className={style.tr_container}>
           <td>
-            <img className={style.img} src={`http://localhost:5000/public/images/${picture}`} alt="" />
+            <img className={style.img} src={pictureUrl} alt="" />
           </td>
-          <td  >{changeLanguage(name)}</td>
-          <td >{price}</td>
+          <td>{changeLanguage(name)}</td>
+          <td>{price}</td>
           <td className={style.button_container}>
             <Button to={"/"} text={"delete"} onClick={deleteFunc} />
 
