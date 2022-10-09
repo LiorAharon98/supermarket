@@ -7,6 +7,7 @@ import ProductCategory from "../../components/product_category/ProductCategory";
 import HamburgerMenu from "../../components/hamburger_menu/HamburgerMenu";
 import { useState } from "react";
 import Button from "../../components/button/Button";
+import HeaderTag from "../../components/header_tag/HeaderTag";
 const ProductsPage = () => {
   const { products, addToCart, cart, changeLanguage } = useDataProvider();
 
@@ -29,9 +30,7 @@ const ProductsPage = () => {
     <>
       <HamburgerMenu onclick={displayCategoryFunc} />
 
-      <h1 id={styles.user_name_products}>
-        {changeLanguage("hello")} {state?.username}
-      </h1>
+      <HeaderTag text={`hello ${state ? state.username : ''}`}/>
       <ProductCategory
         displayCategory={displayCategory}
         categoryFilter={categoryFilter}

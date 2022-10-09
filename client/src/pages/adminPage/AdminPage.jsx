@@ -41,7 +41,7 @@ const AdminPage = () => {
           {displayOption &&
             li.map((li, index) => {
               return (
-                <li className={style.menu} key={index} onClick={li.onclick}>
+                <li className={style.li_menu} key={index} onClick={li.onclick}>
                   {changeLanguage(li.label)}
                 </li>
               );
@@ -63,7 +63,7 @@ const AdminPage = () => {
             <table className={style.table_users_container}>
               <thead className={style.thead}>
                 <tr>
-                  <td>username</td>
+                  <td >username</td>
                   <td>email</td>
                 </tr>
                 {users.map((user, index) => {

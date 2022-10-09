@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
 import { useDataProvider } from "../../context/DataProvider";
+import HeaderTag from "../../components/header_tag/HeaderTag";
 import style from "./add-product-page.module.css";
 const AddProductsPage = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const AddProductsPage = () => {
   };
   return (
     <div>
-      <h1 id={style.add_product_tag}>{changeLanguage("add product")}!</h1>
+      <HeaderTag text={'add product'}/>
       <div className={style.container}>
         <div className={style.add_product_container}>
           {inp.map((input, index) => {
@@ -55,9 +56,12 @@ const AddProductsPage = () => {
             );
           })}
           <input ref={imgInp} type="file" id="inputFile" style={{ display: "none" }} />
-          <label className={style.inpFile} htmlFor="inputFile">
+          <div>
+
+          <label className={style.label_inp_file} htmlFor="inputFile">
             {changeLanguage("upload")}
           </label>
+          </div>
           <div>
             <Button to={"/"} text={"add"} onClick={handleClick} />
           </div>

@@ -35,7 +35,7 @@ const DataProvider = ({ children }) => {
     fetchData();
   }, []);
   const changeLanguage = (value) => {
-    return t(value);
+    return t(value).toLocaleLowerCase();
   };
   const addProducts = (addedProducts, picture) => {
     const storageRef = ref(storage, `/products-images/${picture.name}`);

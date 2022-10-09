@@ -9,7 +9,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 30vh;
+  min-height: 60vh;
+}
+.thead {
+  background-color: white;
+  border: 1px solid black;
 }
 
 .table_products_container {
@@ -21,6 +25,7 @@
   width: 50%;
 }
 
+
 .menu_container {
   background-color: white;
   transition: 1s;
@@ -30,12 +35,16 @@
   height: 0px;
   transition: 1s;
 }
-.menu {
+.li_menu {
   text-align: center;
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 22px;
   text-decoration: underline;
   list-style-type: none;
+}
+.li_menu:hover{
+transition: 500ms;
+color: rgb(43, 186, 234);
 }
 
 @media screen and (max-width: 768px) {

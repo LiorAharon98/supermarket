@@ -1,20 +1,17 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
-import { useDataProvider } from "../../context/DataProvider";
+import HeaderTag from "../../components/header_tag/HeaderTag";
 import style from "./home-page.module.css";
 const HomePage = () => {
-  const navigate = useNavigate();
-  const { changeLanguage } = useDataProvider();
   const links = [
-    { label: "Sign up", to: "/user/sign-up" },
-    { label: "Sign in", to: "/user/sign-in" },
-    { label: "Products", to: "products" },
+    { label: "sign up", to: "/user/sign-up" },
+    { label: "sign in", to: "/user/sign-in" },
+    { label: "products", to: "products" },
   ];
 
   return (
     <>
-      <h1 id={style.tag}>{changeLanguage("welcome")}</h1>
+      <HeaderTag classname={'homepage'} text={"welcome"} />
       <div className={style.div_container}>
         {links.map((link, index) => {
           return <Button key={index} to={link.to} text={link.label} />;

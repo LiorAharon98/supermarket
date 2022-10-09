@@ -7,7 +7,7 @@
 }
 .add_product_container {
   width: 300px;
-  height: 350px;
+  height: 500px;
   justify-content: space-around;
   background-color: white;
   display: flex;
@@ -23,20 +23,17 @@
   border-radius: 10px;
   border: rgb(113, 113, 113) 0.5px solid;
 }
-#add_product_tag {
-  text-align: center;
-  color: white;
-}
-#add_btn {
-  background-color: white;
-  height: 30px;
-  width: 120px;
-  border-radius: 10px;
-  border: 1px solid rgb(216, 216, 216);
-  font-weight: bold;
-}
 
-.inpFile{
-  font-size: 16px;
-  text-decoration: underline;
+
+
+.label_inp_file{
+  font-size: 18px;
+  padding: 10px;
+  background-color: lightblue;
+  border-radius: 10px;
+}
+.label_inp_file:hover{
+transition: 600ms;
+background-color: white;
+color: black;
 }

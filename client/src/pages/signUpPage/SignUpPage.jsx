@@ -1,12 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useDataProvider } from "../../context/DataProvider";
 
 import { useNavigate } from "react-router-dom";
 import style from "./sign-up-page.module.css";
-import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import Button from "../../components/button/Button";
 import Input from "../../components/input/Input";
+import HeaderTag from "../../components/header_tag/HeaderTag";
 const SignUpPage = () => {
   const [toggleError, setToggleError] = useState("");
   const {
@@ -33,7 +33,7 @@ const SignUpPage = () => {
   return (
     <form className={style.form_container}>
       <div>
-        <h1 id={style.sign_up_tag}>{changeLanguage("Sign up")}</h1>
+        <HeaderTag text={"sign up"} />
         <div className={style.sign_up_container}>
           <Input
             name="username"
@@ -48,7 +48,7 @@ const SignUpPage = () => {
             rules={{ required: "fill please", validate: (value) => value === pwd || "password not match" }}
           />
 
-          {toggleError && <h2>{changeLanguage('user already exist')}</h2>}
+          {toggleError && <h2>{changeLanguage("user already exist")}</h2>}
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign up")} />
         </div>
       </div>

@@ -5,12 +5,6 @@
   flex-wrap: wrap;
 }
 
-#user_name_products {
-  text-align: center;
-  color: white;
-  margin: 0px;
-}
-
 .menu_container {
   display: flex;
   justify-content: center;

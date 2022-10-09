@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import HeaderTag from "../../components/header_tag/HeaderTag";
 import { useNavigate } from "react-router-dom";
 import { useDataProvider } from "../../context/DataProvider";
 import { useForm } from "react-hook-form";
@@ -29,7 +29,7 @@ const SignInPage = () => {
   return (
     <form className={style.form_container}>
       <div>
-        <h1 id={style.tag}>{changeLanguage("Sign in")}</h1>
+        <HeaderTag text={'sign in'}/>
         <div className={style.sign_in_container}>
           <Input
             control={control}

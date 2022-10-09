@@ -1,5 +1,6 @@
 import React from "react";
 import { useDataProvider } from "../../context/DataProvider";
+import SortProductSelect from "../sort_product_select/SortProductSelect";
 import style from "./product_category.module.css";
 const ProductCategory = ({ categoryFilter, displayCategoryFunc, displayCategory }) => {
   const { products, changeLanguage } = useDataProvider();
@@ -11,6 +12,7 @@ const ProductCategory = ({ categoryFilter, displayCategoryFunc, displayCategory 
       {displayCategory && (
         <div className={style.container2}>
           <ul className={style.category_container}>
+          <SortProductSelect/>
             <li
               className={style.li_category}
               onClick={() => {
@@ -30,6 +32,7 @@ const ProductCategory = ({ categoryFilter, displayCategoryFunc, displayCategory 
                     displayCategoryFunc();
                   }}
                 >
+
                   {changeLanguage(liElement.category)}
                 </li>
               );

@@ -19,11 +19,11 @@ const AdminProductsManager = ({ name, price, pictureUrl }) => {
     <>
       <thead className={style.thead_container}>
         <tr className={style.tr_container}>
-          <td>
+          <td className={style.td} >
             <img className={style.img} src={pictureUrl} alt="" />
           </td>
-          <td>{changeLanguage(name)}</td>
-          <td>{price}</td>
+          <td className={style.td}>{changeLanguage(name)}</td>
+          <td className={style.td} >{price}</td>
           <td className={style.button_container}>
             <Button to={"/"} text={"delete"} onClick={deleteFunc} />
 

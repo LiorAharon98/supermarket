@@ -1,9 +1,9 @@
 const he_translation = {
   welcome: "ברוכים הבאים לאתר הקניות",
-  'Sign up': "הרשמה",
-  'Sign in': "התחברות",
+  'sign up': "הרשמה",
+  'sign in': "התחברות",
   upload : 'העלאה',
-  Products: "מוצרים",
+  products: "מוצרים",
   pay: "שלם",
   password : 'סיסמא',
   'confirm password' : 'סיסמא חוזרת',
@@ -48,10 +48,15 @@ const he_translation = {
   eggs: "ביצים",
   sugar: "סוכר",
   cheese: "גבינה",
+  'chiken brast' : 'חזה עוף',
   'chocolate milk': "שוקו",
   'french fries' : "צ'יפס",
+  'sweet corn' : 'תירס מתוק',
+  banana : 'בננה',
+  orange : 'תפוז',
   about : 'אודות',
   support : 'תמיכה',
-  'user already exist' : 'משתמש קיים'
+  'user already exist' : 'משתמש קיים',
+  'frozen food ' : 'מזון קפוא'
 }
 export default he_translation

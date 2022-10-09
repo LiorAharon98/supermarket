@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import Button from "../../components/button/Button";
+import HeaderTag from "../../components/header_tag/HeaderTag";
 import { useDataProvider } from "../../context/DataProvider";
 
 import style from "./payment-page.module.css";
@@ -16,7 +17,7 @@ const PaymentPage = () => {
   return (
     <div className={style.container}>
       <div className={style.payment_container}>
-        <h1 id={style.payment_tag}>{changeLanguage("pay")}</h1>
+        <HeaderTag text={'pay'}/>
         {cart.map((product, index) => {
           countTotal(product.price);
           return (

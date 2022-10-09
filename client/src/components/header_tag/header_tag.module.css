@@ -1,0 +1,17 @@
+.text {
+  color: white;
+  text-align: center;
+  background-color: rgb(11, 135, 197);
+  border-radius: 10px;
+}
+.homepage_text {
+  color: white;
+  border-radius: 10px;
+  padding-left: 40px;
+}
+@media screen and (max-width: 768px) {
+  .homepage_text {
+    text-align: center;
+    padding: 0px;
+  }
+}

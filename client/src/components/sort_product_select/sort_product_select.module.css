@@ -1,13 +1,13 @@
 .container{
     height: 40px;
     border-radius: 10px;
+    border: none;
+    background-color: rgb(240, 240, 240);
     text-align: center;
     margin-top: 10px;
     width: 100px;
-    background-color: white;
 }
 .option_container{
-    font-size: 18px;
-    color: rgba(5, 151, 219, 0.816);
+    font-size: 16px;
 }
 

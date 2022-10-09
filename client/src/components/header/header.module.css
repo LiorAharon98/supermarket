@@ -7,3 +7,9 @@
 li {
   list-style: none;
 }
+@media screen and (max-width :768px) {
+  .menu_container{
+    position: sticky;
+    top: 0px;
+  }
+}
