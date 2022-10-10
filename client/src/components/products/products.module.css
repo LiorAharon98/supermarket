@@ -7,24 +7,24 @@
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   font-weight: bold;
-  width: 230px;
+  width: 240px;
 }
 
 .product_img {
   height: 100px;
   border-radius: 10px;
-  width: 100px;
+  width: 130px;
 }
 .add_btn {
   border: none;
-  background-color: rgb(242, 63, 63);
+  background-color: rgb(198, 198, 198);
   border-radius: 5px;
   width: 150px;
   margin-bottom: 5px;
   height: 25px;
   color: white;
 }
-.added_btn{
+.added_btn {
   background-color: rgba(2, 178, 213, 0.827);
   color: white;
   border: none;
@@ -34,11 +34,9 @@
   width: 90px;
   transition: 0.5s;
 }
-p{
-  color: black;
-}
+
 @media screen and (max-width: 768px) {
   .products {
-    width: 150px;
+    width: 180px;
   }
 }

@@ -1,5 +1,5 @@
 import { useContext, createContext, useState, useEffect } from "react";
-import { ref, uploadBytes, listAll, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Axios from "axios";
 import { useTranslation } from "react-i18next";
 
@@ -11,23 +11,24 @@ export const useDataProvider = () => {
 };
 
 const DataProvider = ({ children }) => {
-  const imageRef = ref(storage, "/products-images");
-  const [images, setImages] = useState([]);
-  const [products, setProducts] = useState([]);
   const { t } = useTranslation();
+  const [products, setProducts] = useState([]);
+  const [spinner,setSpinner] = useState(false)
   const [users, setUsers] = useState([]);
   const [cart, setCart] = useState([]);
   const [toggleLogOut, setToggleLogOut] = useState(false);
   const [toggleSort, setSort] = useState(false);
   const baseUrl = "https://node-js-shopping-cart.herokuapp.com/shopping-cart";
   const fetchData = () => {
-    Axios.get(baseUrl).then((response) => {
+    setSpinner(true)
+     Axios.get(baseUrl).then((response) => {
       const data = {
         users: response.data[0],
         products: response.data[1],
       };
       setUsers(data.users);
       setProducts(data.products);
+      setSpinner(false)
     });
   };
 
@@ -143,7 +144,7 @@ const DataProvider = ({ children }) => {
     products,
     baseUrl,
     changeLanguage,
-    images,
+    spinner
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

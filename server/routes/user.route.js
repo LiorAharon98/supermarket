@@ -15,9 +15,7 @@ router.post("/sign-up", async (req, res) => {
   } catch (e) {
     return console.log("error");
   }
-  res.json('ok')
 });
-
 
 router.post("/payment", async (req, res) => {
   let body = req.body;
@@ -26,7 +24,7 @@ router.post("/payment", async (req, res) => {
   const update = { shoppingHistory: body.total };
   const opts = { new: true };
   await UserModel.findOneAndUpdate(filter, { $push: update }, opts);
-  res.json('ok')
+  res.json("ok");
 });
 
 module.exports = router;

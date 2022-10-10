@@ -1,7 +1,7 @@
 .text {
-  color: white;
+  color: rgba(31, 31, 31, 0.874);
   text-align: center;
-  background-color: rgb(11, 135, 197);
+  background-color: rgba(252, 252, 252, 0.896);
   border-radius: 10px;
 }
 .homepage_text {
