@@ -17,7 +17,7 @@ const Footer = () => {
       <div id={styles.footer_container}>
         <h1>{changeLanguage("other")}</h1>
         <h4>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, molestiae reiciendis provident veniam maxime odio optio ad magnam. Soluta officiis necessitatibus corrupti magnam exercitationem explicabo, assumenda impedit quam labore eaque.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, molestiae reiciendis provident veniam maxime odio optio ad magnam. Soluta officiis necessitatibus corrupti magnam exercitationem explicabo, assumenda impedit
         </h4>
       </div>
     </div>

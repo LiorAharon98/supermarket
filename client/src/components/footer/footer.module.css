@@ -2,24 +2,21 @@
   display: flex;
 }
 #footer_container {
-  background-color: rgba(218, 218, 218, 0.831);
+  border-radius: 5px;
+  padding-left: 10px;
+  background-color: rgba(0, 140, 255, 0.651);
   width: 100%;
   height: 200px;
 }
 
 @media screen and (max-width: 768px) {
+  #footer_container {
+    background-color: rgba(3, 152, 251, 0.902);
+    color: rgb(231, 231, 231);
+  }
   .container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-  }
-  #about {
-    width: 100%;
-  }
-  #support {
-    width: 100%;
-  }
-  #other {
-    width: 100%;
+    width: 97.5%;
   }
 }

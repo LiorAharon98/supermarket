@@ -4,12 +4,8 @@ const ProductModel = require("../models/Product");
 const UserModel = require("../models/User");
 
 router.get("/", async (req, res) => {
-  await UserModel.find({}, (err, users) => {
-    ProductModel.find({}, (err, products) => {
-      const temp = [users, products];
-      res.json(temp);
-    });
-  }).clone();
+  const temp = await Promise.all([UserModel.find({}), ProductModel.find({})]);
+  res.json(temp);
 });
 
 router.post("/add-product", async (req, res) => {

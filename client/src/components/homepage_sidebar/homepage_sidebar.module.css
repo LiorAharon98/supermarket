@@ -1,0 +1,23 @@
+.container{
+width: 30%;
+border-radius: 10px;
+min-height: 60vh;
+transition: 500ms;
+background-color: white;
+
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+text-decoration: underline;
+font-size: 18px;
+}
+.container_inactive{
+    transition: 500ms;
+    width: 0px;
+}
+@media screen and (max-width:768px) {
+    .container{
+        width: 100%;
+        min-height: 65vh;
+    }
+}

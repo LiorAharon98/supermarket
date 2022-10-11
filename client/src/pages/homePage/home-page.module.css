@@ -1,21 +1,18 @@
 body {
-  background-image: url("/public/pictures/background_mobile.jpg");
-  background-repeat: repeat;
+  background-image: url("/public/pictures/background.webp");
+  background-position: center;
 }
 
 .div_container {
   min-height: 65vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  padding-left: 50px;
 }
 
 @media screen and (max-width: 768px) {
   body {
-    background-image: url("/public/pictures/background_mobile.jpg");
-    background-repeat: repeat;
     background-size: contain;
   }
 
