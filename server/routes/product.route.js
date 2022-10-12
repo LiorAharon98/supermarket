@@ -21,7 +21,6 @@ router.post("/add-product", async (req, res) => {
 });
 router.delete("/admin", async (req, res) => {
   let body = req.body.product;
-  res.send(body);
   await ProductModel.deleteOne({ name: body }, (err, obj) => {});
   res.json("ok");
 });

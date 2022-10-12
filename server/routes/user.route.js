@@ -19,7 +19,6 @@ router.post("/sign-up", async (req, res) => {
 
 router.post("/payment", async (req, res) => {
   let body = req.body;
-  res.send(body);
   const filter = { username: body.username };
   const update = { shoppingHistory: body.total };
   const opts = { new: true };

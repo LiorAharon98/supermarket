@@ -7,7 +7,7 @@ body {
   min-height: 65vh;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -18,7 +18,7 @@ body {
 
   .div_container {
     display: flex;
-    justify-content: space-around;
+
     align-items: center;
     padding: 0px;
   }

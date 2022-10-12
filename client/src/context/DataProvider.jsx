@@ -13,22 +13,22 @@ export const useDataProvider = () => {
 const DataProvider = ({ children }) => {
   const { t } = useTranslation();
   const [products, setProducts] = useState([]);
-  const [spinner,setSpinner] = useState(false)
+  const [spinner, setSpinner] = useState(false);
   const [users, setUsers] = useState([]);
   const [cart, setCart] = useState([]);
   const [toggleLogOut, setToggleLogOut] = useState(false);
   const [toggleSort, setSort] = useState(false);
   const baseUrl = "https://node-js-shopping-cart.herokuapp.com/shopping-cart";
   const fetchData = () => {
-    setSpinner(true)
-     Axios.get(baseUrl).then((response) => {
+    setSpinner(true);
+    Axios.get(baseUrl).then((response) => {
       const data = {
         users: response.data[0],
         products: response.data[1],
       };
       setUsers(data.users);
       setProducts(data.products);
-      setSpinner(false)
+      setSpinner(false);
     });
   };
 
@@ -76,11 +76,7 @@ const DataProvider = ({ children }) => {
     });
   };
   const specificUser = (password, username) => {
-    const findUser = users.find((user) => {
-      return user.password === password && user.username === username;
-    });
-    if (findUser) setToggleLogOut(true);
-    return findUser;
+    return users.find((user) => user.password === password && user.username === username);
   };
 
   const addProductToUser = (username, total) => {
@@ -92,10 +88,7 @@ const DataProvider = ({ children }) => {
     setCart([]);
   };
   const isUserExist = (username) => {
-    const checkUser = users.find((user) => {
-      return user.username === username;
-    });
-    return checkUser;
+    return users.find((user) => user.username === username);
   };
   const addToCart = (productName, price) => {
     setCart((prev) => {
@@ -144,7 +137,7 @@ const DataProvider = ({ children }) => {
     products,
     baseUrl,
     changeLanguage,
-    spinner
+    spinner,
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };

@@ -8,15 +8,16 @@ import AdminPage from "./pages/adminPage/AdminPage";
 import AddProductsPage from "./pages/addProductsPage/AddProductsPage";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import HeaderTag from "./components/header_tag/HeaderTag";
 import { useDataProvider } from "./context/DataProvider";
+import LoadingScreen from "./components/loading_screen/LoadingScreen";
 const App = () => {
   const { spinner } = useDataProvider();
   return (
     <>
+      {spinner && <LoadingScreen />}
+
       <BrowserRouter basename="/shopping-cart">
         <Header />
-        {spinner && <HeaderTag text={"Loading Data..."} />}
 
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
