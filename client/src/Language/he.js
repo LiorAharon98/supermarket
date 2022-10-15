@@ -57,6 +57,8 @@ const he_translation = {
   about : 'אודות',
   support : 'תמיכה',
   'user already exist' : 'משתמש קיים',
-  'frozen food ' : 'מזון קפוא'
+  'frozen food ' : 'מזון קפוא',
+  start : 'שנתחיל?',
+  hello : 'שלום'
 }
 export default he_translation

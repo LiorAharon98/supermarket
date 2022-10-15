@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useDataProvider } from "../../context/DataProvider";
 import style from "./products.module.css";
-const Products = ({ name, price,pictureUrl }) => {
-  const [countItems, setCountItems] = useState(0);
-  const { addToCart, changeLanguage } = useDataProvider();
-  const countItemsFunc = () => {
-    setCountItems((prev) => {
-      return prev + 1;
-    });
+const Products = ({ name, price, pictureUrl, addToCart }) => {
+  const { changeLanguage } = useDataProvider();
+  const [countItems, setCountItems] = useState([]);
+  const countItemsFunc = (name) => {
+    setCountItems((prev) => [...prev, { name }]);
   };
 
+  if (!name) return;
   return (
     <div className={style.products}>
       <div>
@@ -18,13 +18,13 @@ const Products = ({ name, price,pictureUrl }) => {
         <p>{price}₪</p>
 
         <button
-          className={countItems > 0 ? style.added_btn : style.add_btn}
+          className={countItems.find((item) => item.name) ? style.added_btn : style.add_btn}
           onClick={() => {
-            countItemsFunc();
+            countItemsFunc(name);
             addToCart(name, price);
           }}
         >
-          {countItems > 0 ? changeLanguage("added") : changeLanguage("add")}!
+          {countItems.find((item) => item.name) ? changeLanguage("added") : changeLanguage("add")}!
         </button>
       </div>
     </div>

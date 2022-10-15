@@ -1,16 +1,24 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import style from "./admin-page.module.css";
 import { useDataProvider } from "../../context/DataProvider";
 import AdminProductsManager from "../../components/admin_products_manager/AdminProductsManager";
 import UsersPage from "../usersPage/UsersPage";
 import HamburgerMenu from "../../components/hamburger_menu/HamburgerMenu";
+import { useEffect } from "react";
 const AdminPage = () => {
-  const { users, products, changeLanguage } = useDataProvider();
+  const { products, changeLanguage, baseUrl } = useDataProvider();
+  const [users, setUsers] = useState();
   const navigate = useNavigate();
   const [toggleAdminOptions, setToggleAdminOption] = useState(0);
   const [displayOption, setDisplayOption] = useState(false);
-
+  useEffect(() => {
+    const fetchUsers = () => {
+      axios.get(`${baseUrl}/admin`).then((response) => setUsers(response.data));
+    };
+    fetchUsers();
+  },[]);
   const displayCategoryFunc = () => {
     setDisplayOption((prev) => {
       return !prev;
@@ -35,8 +43,7 @@ const AdminPage = () => {
   return (
     <>
       <div className={style.admin_container}>
-
-          <HamburgerMenu onclick={displayCategoryFunc} />
+        <HamburgerMenu onclick={displayCategoryFunc} />
         <div className={displayOption ? style.menu_container : style.menu_inactive}>
           {displayOption &&
             li.map((li, index) => {
@@ -47,7 +54,6 @@ const AdminPage = () => {
               );
             })}
         </div>
-
 
         {toggleAdminOptions === 0 && (
           <div className={style.products_container}>
@@ -63,7 +69,7 @@ const AdminPage = () => {
             <table className={style.table_users_container}>
               <thead className={style.thead}>
                 <tr>
-                  <td >username</td>
+                  <td>username</td>
                   <td>email</td>
                 </tr>
                 {users.map((user, index) => {

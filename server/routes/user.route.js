@@ -17,13 +17,18 @@ router.post("/sign-up", async (req, res) => {
   }
 });
 
+router.post("/sign-in", async (req, res) => {
+  const body = req.body;
+  const temp = await UserModel.find({ username: body.username });
+  res.json(temp);
+});
+
 router.post("/payment", async (req, res) => {
   let body = req.body;
   const filter = { username: body.username };
   const update = { shoppingHistory: body.total };
   const opts = { new: true };
   await UserModel.findOneAndUpdate(filter, { $push: update }, opts);
-  res.json("ok");
 });
 
 module.exports = router;

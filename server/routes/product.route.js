@@ -4,8 +4,8 @@ const ProductModel = require("../models/Product");
 const UserModel = require("../models/User");
 
 router.get("/", async (req, res) => {
-  const temp = await Promise.all([UserModel.find({}), ProductModel.find({})]);
-  res.json(temp);
+  const products = await ProductModel.find({});
+  res.json(products);
 });
 
 router.post("/add-product", async (req, res) => {
@@ -23,6 +23,12 @@ router.delete("/admin", async (req, res) => {
   let body = req.body.product;
   await ProductModel.deleteOne({ name: body }, (err, obj) => {});
   res.json("ok");
+});
+
+router.get("/admin", async (req, res) => {
+  const users = await UserModel.find({});
+  res.json(users);
+
 });
 router.post("/admin", async (req, res) => {
   let price = req.body.price;

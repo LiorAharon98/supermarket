@@ -5,18 +5,20 @@ import { useDataProvider } from "../../context/DataProvider";
 
 import style from "./sort_product_select.module.css";
 
-const SortProductSelect = () => {
+const SortProductSelect = ({displayCategoryFunc}) => {
   const { t } = useTranslation();
   const { sortProductsByPrice } = useDataProvider();
   const [selectDetails, setSelectDetails] = useState("");
 
-  useEffect(() => {
-    sortProductsByPrice(selectDetails);
-  }, [selectDetails]);
-  return (
-    <select
-      className={style.container}
-      onChange={(e) => {
+useEffect(()=>{
+  sortProductsByPrice(selectDetails)
+  displayCategoryFunc()
+},[selectDetails])
+return (
+  <select
+  className={style.container}
+  onChange={(e) => {
+    
         setSelectDetails(e.target.value);
       }}
     >

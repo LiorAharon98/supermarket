@@ -19,12 +19,12 @@ const SignInPage = () => {
   const { specificUser,changeLanguage } = useDataProvider();
   const navigate = useNavigate();
   const [errorDetails, setErrorDetails] = useState("");
-  const handleClick = (data) => {
+  const handleClick = async(data) => {
     const {username,password} = data
     if (username === "Admin" && password === "1111") return navigate("/admin");
-    if (!specificUser(password, username)) return setErrorDetails("username not found");
-    specificUser(password, username);
-    navigate("/products", { state: specificUser(password, username) });
+    const user = await specificUser(password,username)
+    if (!user) return setErrorDetails('user not exist')
+    navigate("/products", { state: user });
   };
   return (
     <form className={style.form_container}>

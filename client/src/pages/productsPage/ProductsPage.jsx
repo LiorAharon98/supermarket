@@ -1,53 +1,46 @@
 import { useDataProvider } from "../../context/DataProvider";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./products_page_style.module.css";
 import Products from "../../components/products/Products";
 import ProductCategory from "../../components/product_category/ProductCategory";
-import HamburgerMenu from "../../components/hamburger_menu/HamburgerMenu";
 import { useState } from "react";
 import Button from "../../components/button/Button";
 import HeaderTag from "../../components/header_tag/HeaderTag";
 const ProductsPage = () => {
-  const { products, addToCart, cart, changeLanguage } = useDataProvider();
+  const { products, changeLanguage, user } = useDataProvider();
 
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const [sort, setSort] = useState();
+  const [cart, setCart] = useState([]);
   const [toggleProducts, setToggleProducts] = useState("all");
-  const [displayCategory, setDisplayCategory] = useState(false);
+
   const categoryFilter = (category) => {
     if (category === "all") return setToggleProducts("all");
     setToggleProducts(category);
   };
 
-  const displayCategoryFunc = () => {
-    setDisplayCategory((prev) => {
-      return !prev;
+  const addToCart = (productName, price) => {
+    setCart((prev) => {
+      return [...prev, { productName: productName, price: price }];
     });
   };
 
+  const productsFilter = (filter) => {
+    return filter === "all"
+      ? products.map((product) => product)
+      : products.filter((product) => product.category === toggleProducts).map((product) => product);
+  };
   return (
     <>
-      <HamburgerMenu onclick={displayCategoryFunc} />
-
-      <HeaderTag text={`hello ${state ? state.username : ''}`}/>
-      <ProductCategory
-        displayCategory={displayCategory}
-        categoryFilter={categoryFilter}
-        displayCategoryFunc={displayCategoryFunc}
-      />
+      <HeaderTag text={`hello ${user ? user.username : ""}`} />
+      <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
       <div className={styles.products_container}>
-        {toggleProducts === "all"
-          ? products.map((product, index) => {
-              return <Products index= {index} key={index} {...product} addToCart={addToCart} />;
-            })
-          : products
-              .filter((product) => {
-                return product.category === toggleProducts;
-              })
-              .map((product, index) => {
-                return <Products index={index} key={index} {...product} addToCart={addToCart} />;
-              })}
+        {productsFilter(toggleProducts).map((product, index) => {
+          return <Products key={index} {...product} addToCart={addToCart} />;
+        })}
+
+        <Products />
       </div>
       <div className={styles.payment_btn_container}>
         {cart.length > 0 && (
@@ -56,7 +49,7 @@ const ProductsPage = () => {
             text={changeLanguage("payment")}
             onClick={(e) => {
               e.preventDefault();
-              navigate("/user/payment", { state: { cart, user: state } });
+              navigate("/user/payment", { state: { cart, user: user } });
             }}
           />
         )}
