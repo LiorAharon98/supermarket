@@ -28,6 +28,7 @@ const DataProvider = ({ children }) => {
   useEffect(() => {
     fetchData();
   }, []);
+
   const changeLanguage = (value) => {
     return t(value).toLocaleLowerCase();
   };
@@ -69,8 +70,8 @@ const DataProvider = ({ children }) => {
     };
     axios.post(`${baseUrl}/user/sign-up`, user);
   };
-  const specificUser = async (password, username) => {
-    const user = { password, username };
+  const specificUser = async (username, password) => {
+    const user = { username, password };
     const axiosResponse = await axios.post(`${baseUrl}/user/sign-in`, user).then((response) => {
       setUser(response.data[0]);
       return response.data[0];
@@ -78,7 +79,7 @@ const DataProvider = ({ children }) => {
     return axiosResponse;
   };
 
-  const addProductToUser = (username, total) => {
+  const userPaymentFunc = (username, total) => {
     const user = { username, total };
     axios.post(`${baseUrl}/user/payment`, user);
   };
@@ -90,7 +91,7 @@ const DataProvider = ({ children }) => {
     });
   };
   const sortProductsByPrice = (sortPrice) => {
-   products.sort((a, b) => {
+    products.sort((a, b) => {
       if (sortPrice === "high") {
         if (a.price < b.price) return 1;
         if (a.price > b.price) return -1;
@@ -111,7 +112,7 @@ const DataProvider = ({ children }) => {
     addProducts,
     addUser,
     specificUser,
-    addProductToUser,
+    userPaymentFunc,
     products,
     baseUrl,
     changeLanguage,

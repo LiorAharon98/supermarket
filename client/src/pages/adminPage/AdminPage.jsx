@@ -10,21 +10,20 @@ import { useEffect } from "react";
 const AdminPage = () => {
   const { products, changeLanguage, baseUrl } = useDataProvider();
   const [users, setUsers] = useState();
-  const navigate = useNavigate();
   const [toggleAdminOptions, setToggleAdminOption] = useState(0);
   const [displayOption, setDisplayOption] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchUsers = () => {
       axios.get(`${baseUrl}/admin`).then((response) => setUsers(response.data));
     };
     fetchUsers();
-  },[]);
+  }, []);
   const displayCategoryFunc = () => {
     setDisplayOption((prev) => {
       return !prev;
     });
   };
-
   const navigateFunc = (value) => {
     if (value === "addProduct") navigate("/add-product");
     else navigate("/");
@@ -35,7 +34,7 @@ const AdminPage = () => {
   };
 
   const li = [
-    { label: "Products", onclick: adminOption.bind(this, 0) },
+    { label: "products", onclick: adminOption.bind(this, 0) },
     { label: "users", onclick: adminOption.bind(this, 1) },
     { label: "add product", onclick: navigateFunc.bind(this, "addProduct") },
     { label: "logout", onclick: navigateFunc.bind(this, "logout") },
@@ -69,8 +68,8 @@ const AdminPage = () => {
             <table className={style.table_users_container}>
               <thead className={style.thead}>
                 <tr>
-                  <td>username</td>
-                  <td>email</td>
+                  <td>{changeLanguage("username")}</td>
+                  <td>{changeLanguage("email")}</td>
                 </tr>
                 {users.map((user, index) => {
                   return <UsersPage key={index} {...user} />;

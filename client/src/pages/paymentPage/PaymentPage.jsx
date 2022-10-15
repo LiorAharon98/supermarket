@@ -10,14 +10,14 @@ const PaymentPage = () => {
   const countTotal = (price) => {
     total += price;
   };
-  const { addProductToUser, changeLanguage } = useDataProvider();
+  const { userPaymentFunc, changeLanguage } = useDataProvider();
   const { state } = useLocation();
   const { user, cart } = state;
 
   return (
     <div className={style.container}>
       <div className={style.payment_container}>
-        <HeaderTag text={'pay'}/>
+        <HeaderTag text={"pay"} />
         {cart.map((product, index) => {
           countTotal(product.price);
           return (
@@ -32,7 +32,7 @@ const PaymentPage = () => {
           to={"/"}
           text={changeLanguage("pay")}
           onClick={() => {
-            addProductToUser(user.username, total);
+            userPaymentFunc(user.username, total);
           }}
         />
       </div>

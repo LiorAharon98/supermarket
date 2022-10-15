@@ -1,25 +1,21 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useDataProvider } from "../../context/DataProvider";
 
 import style from "./sort_product_select.module.css";
 
-const SortProductSelect = ({displayCategoryFunc}) => {
+const SortProductSelect = ({ displayCategoryFunc, setSort }) => {
   const { t } = useTranslation();
   const { sortProductsByPrice } = useDataProvider();
-  const [selectDetails, setSelectDetails] = useState("");
 
-useEffect(()=>{
-  sortProductsByPrice(selectDetails)
-  displayCategoryFunc()
-},[selectDetails])
-return (
-  <select
-  className={style.container}
-  onChange={(e) => {
-    
-        setSelectDetails(e.target.value);
+  return (
+    <select
+      className={style.container}
+      onChange={(e) => {
+        setSort((prev) => {
+          return !prev;
+        });
+        sortProductsByPrice(e.target.value);
+        displayCategoryFunc(false);
       }}
     >
       <option className={style.option_container} value="">

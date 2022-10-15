@@ -6,6 +6,7 @@ import style from "./sign-up-page.module.css";
 import { useForm } from "react-hook-form";
 import Button from "../../components/button/Button";
 import Input from "../../components/input/Input";
+import ErrorTag from "../../components/error_tag/ErrorTag";
 import HeaderTag from "../../components/header_tag/HeaderTag";
 const SignUpPage = () => {
   const [toggleError, setToggleError] = useState("");
@@ -23,11 +24,14 @@ const SignUpPage = () => {
 
   const navigate = useNavigate();
   const pwd = watch("password");
-  const { addUser, isUserExist, changeLanguage } = useDataProvider();
+  const { addUser, changeLanguage, specificUser } = useDataProvider();
 
-  const handleClick = (data) => {
-    if (isUserExist(data.username)) return setToggleError("error");
-    addUser(data.username, data.email, data.password);
+  const handleClick = async (data) => {
+    const { username, email, password } = data;
+    const user = await specificUser(username, password);
+
+    if (user) return setToggleError("user already  exist");
+    addUser(username, email, password);
     navigate("/user/sign-in");
   };
   return (
@@ -48,7 +52,7 @@ const SignUpPage = () => {
             rules={{ required: "fill please", validate: (value) => value === pwd || "password not match" }}
           />
 
-          {toggleError && <h2>{changeLanguage("user already exist")}</h2>}
+          {toggleError && <ErrorTag text={toggleError}/> }
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign up")} />
         </div>
       </div>

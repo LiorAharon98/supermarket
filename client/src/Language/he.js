@@ -59,6 +59,7 @@ const he_translation = {
   'user already exist' : 'משתמש קיים',
   'frozen food ' : 'מזון קפוא',
   start : 'שנתחיל?',
-  hello : 'שלום'
+  hello : 'שלום',
+  homepage :'דף הבית'
 }
 export default he_translation

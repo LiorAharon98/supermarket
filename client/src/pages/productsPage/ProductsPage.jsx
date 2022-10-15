@@ -11,7 +11,7 @@ const ProductsPage = () => {
   const { products, changeLanguage, user } = useDataProvider();
 
   const navigate = useNavigate();
-  const [sort, setSort] = useState();
+  const [sort, setSort] = useState(false);
   const [cart, setCart] = useState([]);
   const [toggleProducts, setToggleProducts] = useState("all");
 

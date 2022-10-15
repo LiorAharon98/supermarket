@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDataProvider } from "../../context/DataProvider";
 import { useForm } from "react-hook-form";
 import Button from "../../components/button/Button";
+import ErrorTag from "../../components/error_tag/ErrorTag";
 import Input from "../../components/input/Input";
 import style from "./sign-in-page.module.css";
 const SignInPage = () => {
@@ -16,20 +17,20 @@ const SignInPage = () => {
     username: "",
     password: "",
   });
-  const { specificUser,changeLanguage } = useDataProvider();
+  const { specificUser, changeLanguage } = useDataProvider();
   const navigate = useNavigate();
-  const [errorDetails, setErrorDetails] = useState("");
-  const handleClick = async(data) => {
-    const {username,password} = data
+  const [errorDetails, setErrorDetails] = useState(false);
+  const handleClick = async (data) => {
+    const { username, password } = data;
     if (username === "Admin" && password === "1111") return navigate("/admin");
-    const user = await specificUser(password,username)
-    if (!user) return setErrorDetails('user not exist')
+    const user = await specificUser(username, password);
+    if (!user) return setErrorDetails("user not exist");
     navigate("/products", { state: user });
   };
   return (
     <form className={style.form_container}>
       <div>
-        <HeaderTag text={'sign in'}/>
+        <HeaderTag text={"sign in"} />
         <div className={style.sign_in_container}>
           <Input
             control={control}
@@ -41,8 +42,8 @@ const SignInPage = () => {
             name="password"
             rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
           />
-          {errorDetails !== "" && <p id={style.errorDetails}>{changeLanguage(errorDetails)}!</p>}
-          <Button to={'/'} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign in")} />
+          {errorDetails && <ErrorTag text={errorDetails} />}
+          <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign in")} />
         </div>
       </div>
     </form>
