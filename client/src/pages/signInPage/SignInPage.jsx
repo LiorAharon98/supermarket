@@ -8,6 +8,7 @@ import Button from "../../components/button/Button";
 import ErrorTag from "../../components/error_tag/ErrorTag";
 import Input from "../../components/input/Input";
 import style from "./sign-in-page.module.css";
+import Card from "../../components/card/Card";
 const SignInPage = () => {
   const {
     control,
@@ -28,7 +29,7 @@ const SignInPage = () => {
     navigate("/products", { state: user });
   };
   return (
-    <form className={style.form_container}>
+    <Card>
       <div>
         <HeaderTag text={"sign in"} />
         <div className={style.sign_in_container}>
@@ -46,7 +47,7 @@ const SignInPage = () => {
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign in")} />
         </div>
       </div>
-    </form>
+    </Card>
   );
 };
 

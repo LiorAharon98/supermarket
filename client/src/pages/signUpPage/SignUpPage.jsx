@@ -8,6 +8,7 @@ import Button from "../../components/button/Button";
 import Input from "../../components/input/Input";
 import ErrorTag from "../../components/error_tag/ErrorTag";
 import HeaderTag from "../../components/header_tag/HeaderTag";
+import Card from "../../components/card/Card";
 const SignUpPage = () => {
   const [toggleError, setToggleError] = useState("");
   const {
@@ -35,7 +36,7 @@ const SignUpPage = () => {
     navigate("/user/sign-in");
   };
   return (
-    <form className={style.form_container}>
+    <Card >
       <div>
         <HeaderTag text={"sign up"} />
         <div className={style.sign_up_container}>
@@ -52,11 +53,11 @@ const SignUpPage = () => {
             rules={{ required: "fill please", validate: (value) => value === pwd || "password not match" }}
           />
 
-          {toggleError && <ErrorTag text={toggleError}/> }
+          {toggleError && <ErrorTag text={toggleError} />}
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign up")} />
         </div>
       </div>
-    </form>
+    </Card>
   );
 };
 

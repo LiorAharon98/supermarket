@@ -4,7 +4,7 @@ body {
 }
 
 .div_container {
-  min-height: 65vh;
+  min-height: 68vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +18,7 @@ body {
 
   .div_container {
     display: flex;
-
+    min-height: 65vh;
     align-items: center;
     padding: 0px;
   }

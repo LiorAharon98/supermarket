@@ -4,6 +4,7 @@ import Button from "../../components/button/Button";
 import { useDataProvider } from "../../context/DataProvider";
 import HeaderTag from "../../components/header_tag/HeaderTag";
 import style from "./add-product-page.module.css";
+import Card from "../../components/card/Card";
 const AddProductsPage = () => {
   const navigate = useNavigate();
   const nameInp = useRef();
@@ -40,34 +41,34 @@ const AddProductsPage = () => {
     navigate("/admin");
   };
   return (
-    <div>
-      <HeaderTag text={'add product'}/>
-      <div className={style.container}>
-        <div className={style.add_product_container}>
-          {inp.map((input, index) => {
-            return (
-              <input
-                key={index}
-                className={style.inp}
-                type={input.type}
-                placeholder={input.placeholder}
-                ref={input.ref}
-              ></input>
+    <Card>
+      <div>
+
+      <HeaderTag text={"add product"} />
+      <div className={style.add_product_container}>
+        {inp.map((input, index) => {
+          return (
+            <input
+            key={index}
+            className={style.inp}
+            type={input.type}
+            placeholder={input.placeholder}
+            ref={input.ref}
+            ></input>
             );
           })}
-          <input ref={imgInp} type="file" id="inputFile" style={{ display: "none" }} />
-          <div>
-
+        <input ref={imgInp} type="file" id="inputFile" style={{ display: "none" }} />
+        <div className={style.label_container} >
           <label className={style.label_inp_file} htmlFor="inputFile">
             {changeLanguage("upload")}
           </label>
-          </div>
-          <div>
-            <Button to={"/"} text={"add"} onClick={handleClick} />
-          </div>
+        </div>
+        <div>
+          <Button to={"/"} text={"add"} onClick={handleClick} />
         </div>
       </div>
-    </div>
+          </div>
+    </Card>
   );
 };
 

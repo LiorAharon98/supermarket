@@ -19,16 +19,19 @@ const AdminProductsManager = ({ name, price, pictureUrl }) => {
     <>
       <thead className={style.thead_container}>
         <tr className={style.tr_container}>
-          <td className={style.td} >
+          <td className={style.td}>
             <img className={style.img} src={pictureUrl} alt="" />
           </td>
           <td className={style.td}>{changeLanguage(name)}</td>
-          <td className={style.td} >{price}</td>
+          <td className={style.td}>
+            {" "}
+            <p className={style.p}>{price}</p>{" "}
+          </td>
           <td className={style.button_container}>
-            <Button to={"/"} text={"delete"} onClick={deleteFunc} />
+            <Button style={{ width: "100px" }} to={"/"} text={"delete"} onClick={deleteFunc} />
 
             {!updatePriceToggle ? (
-              <Button to={"/"} text={"update"} onClick={updateFunc} />
+              <Button style={{ width: "100px" }} to={"/"} text={"update"} onClick={updateFunc} />
             ) : (
               <UpdatePrice name={name} setUpdateToggle={setUpdatePriceToggle} />
             )}

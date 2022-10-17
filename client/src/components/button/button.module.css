@@ -1,23 +1,22 @@
-.button_container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.button_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 120px;
-    height:40px ;
-    margin-top: 10px;
-    background-color: white;
-    border-radius: 10px;
-    color: black;
-    text-decoration: none;
+#button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 40px;
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 10px;
+  color: black;
+  text-decoration: none;
 }
-#button:hover{
-    transition: 700ms;
-    background-color: rgb(0, 119, 255);
-    color: white;
-
+#button:hover {
+  transition: 700ms;
+  background-color: rgb(0, 119, 255);
+  color: white;
 }

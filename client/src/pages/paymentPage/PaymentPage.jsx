@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import Button from "../../components/button/Button";
 import HeaderTag from "../../components/header_tag/HeaderTag";
 import { useDataProvider } from "../../context/DataProvider";
-
+import Card from "../../components/card/Card";
 import style from "./payment-page.module.css";
 const PaymentPage = () => {
   let total = 0;
@@ -15,7 +15,7 @@ const PaymentPage = () => {
   const { user, cart } = state;
 
   return (
-    <div className={style.container}>
+    <Card>
       <div className={style.payment_container}>
         <HeaderTag text={"pay"} />
         {cart.map((product, index) => {
@@ -36,7 +36,7 @@ const PaymentPage = () => {
           }}
         />
       </div>
-    </div>
+    </Card>
   );
 };
 

@@ -8,7 +8,10 @@
   width: 70px;
   height: 70px;
 }
-.td{
+.p {
+  width: 30px;
+}
+.td {
   border-radius: 10px;
   border: 1px solid black;
 }

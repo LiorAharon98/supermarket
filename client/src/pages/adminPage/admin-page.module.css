@@ -1,16 +1,4 @@
-.products_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 90vh;
-}
 
-.users_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 60vh;
-}
 .thead {
   background-color: white;
   border: 1px solid black;
@@ -24,7 +12,6 @@
   font-size: 25px;
   width: 50%;
 }
-
 
 .menu_container {
   background-color: white;
@@ -42,15 +29,13 @@
   text-decoration: underline;
   list-style-type: none;
 }
-.li_menu:hover{
-transition: 500ms;
-color: rgb(43, 186, 234);
+.li_menu:hover {
+  transition: 500ms;
+  color: rgb(43, 186, 234);
 }
-
 
 @media screen and (max-width: 768px) {
   .table_products_container {
     font-size: 16px;
   }
-
 }

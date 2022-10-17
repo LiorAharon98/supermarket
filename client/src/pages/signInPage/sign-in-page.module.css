@@ -1,16 +1,11 @@
-.form_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 73vh;
-}
+
 .sign_in_container {
   width: 300px;
-  height: 350px;
+  height: 450px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: rgba(244, 244, 244, 0.702);
+  background-color: rgba(244, 244, 244, 0.801);
   border-radius: 10px;
 }
 .inp {

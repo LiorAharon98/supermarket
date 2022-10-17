@@ -7,6 +7,7 @@ import ProductCategory from "../../components/product_category/ProductCategory";
 import { useState } from "react";
 import Button from "../../components/button/Button";
 import HeaderTag from "../../components/header_tag/HeaderTag";
+import Card from "../../components/card/Card";
 const ProductsPage = () => {
   const { products, changeLanguage, user } = useDataProvider();
 
@@ -35,14 +36,14 @@ const ProductsPage = () => {
     <>
       <HeaderTag text={`hello ${user ? user.username : ""}`} />
       <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
-      <div className={styles.products_container}>
+      <Card style={{ flexWrap: "wrap", alignItems: "flex-start" }}>
         {productsFilter(toggleProducts).map((product, index) => {
           return <Products key={index} {...product} addToCart={addToCart} />;
         })}
 
         <Products />
-      </div>
-      <div className={styles.payment_btn_container}>
+      </Card>
+      <div>
         {cart.length > 0 && (
           <Button
             to={"/"}

@@ -70,9 +70,9 @@ const DataProvider = ({ children }) => {
     };
     axios.post(`${baseUrl}/user/sign-up`, user);
   };
-  const specificUser = async (username, password) => {
+  const specificUser =  (username, password) => {
     const user = { username, password };
-    const axiosResponse = await axios.post(`${baseUrl}/user/sign-in`, user).then((response) => {
+    const axiosResponse = axios.post(`${baseUrl}/user/sign-in`, user).then((response) => {
       setUser(response.data[0]);
       return response.data[0];
     });

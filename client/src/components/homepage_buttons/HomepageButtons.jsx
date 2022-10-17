@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./homepage_sidebar.module.css";
+import styles from "./homepage_buttons.module.css";
 import Button from "../button/Button";
-const HomepageSidebar = ({ toggle }) => {
+const HomepageButtons = ({ toggle }) => {
   const links = [
     { label: "sign up", to: "/user/sign-up" },
     { label: "sign in", to: "/user/sign-in" },
@@ -19,4 +19,4 @@ const HomepageSidebar = ({ toggle }) => {
   );
 };
 
-export default HomepageSidebar;
+export default HomepageButtons;

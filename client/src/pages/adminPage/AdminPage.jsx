@@ -7,6 +7,7 @@ import AdminProductsManager from "../../components/admin_products_manager/AdminP
 import UsersPage from "../usersPage/UsersPage";
 import HamburgerMenu from "../../components/hamburger_menu/HamburgerMenu";
 import { useEffect } from "react";
+import Card from "../../components/card/Card";
 const AdminPage = () => {
   const { products, changeLanguage, baseUrl } = useDataProvider();
   const [users, setUsers] = useState();
@@ -41,44 +42,42 @@ const AdminPage = () => {
   ];
   return (
     <>
-      <div className={style.admin_container}>
-        <HamburgerMenu onclick={displayCategoryFunc} />
-        <div className={displayOption ? style.menu_container : style.menu_inactive}>
-          {displayOption &&
-            li.map((li, index) => {
-              return (
-                <li className={style.li_menu} key={index} onClick={li.onclick}>
-                  {changeLanguage(li.label)}
-                </li>
-              );
-            })}
-        </div>
-
-        {toggleAdminOptions === 0 && (
-          <div className={style.products_container}>
-            <table className={style.table_products_container}>
-              {products.map((product, index) => {
-                return <AdminProductsManager key={index} {...product} />;
-              })}
-            </table>
-          </div>
-        )}
-        {toggleAdminOptions === 1 && (
-          <div className={style.users_container}>
-            <table className={style.table_users_container}>
-              <thead className={style.thead}>
-                <tr>
-                  <td>{changeLanguage("username")}</td>
-                  <td>{changeLanguage("email")}</td>
-                </tr>
-                {users.map((user, index) => {
-                  return <UsersPage key={index} {...user} />;
-                })}
-              </thead>
-            </table>
-          </div>
-        )}
+      <HamburgerMenu onclick={displayCategoryFunc} />
+      <div className={displayOption ? style.menu_container : style.menu_inactive}>
+        {displayOption &&
+          li.map((li, index) => {
+            return (
+              <li className={style.li_menu} key={index} onClick={li.onclick}>
+                {changeLanguage(li.label)}
+              </li>
+            );
+          })}
       </div>
+
+      {toggleAdminOptions === 0 && (
+        <Card>
+          <table className={style.table_products_container}>
+            {products.map((product, index) => {
+              return <AdminProductsManager key={index} {...product} />;
+            })}
+          </table>
+        </Card>
+      )}
+      {toggleAdminOptions === 1 && (
+        <Card>
+          <table className={style.table_users_container}>
+            <thead className={style.thead}>
+              <tr>
+                <td>{changeLanguage("username")}</td>
+                <td>{changeLanguage("email")}</td>
+              </tr>
+              {users.map((user, index) => {
+                return <UsersPage key={index} {...user} />;
+              })}
+            </thead>
+          </table>
+        </Card>
+      )}
     </>
   );
 };

@@ -1,9 +1,4 @@
-.form_container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 72vh;
-}
+
 .sign_up_container {
   display: flex;
   width: 320px;
