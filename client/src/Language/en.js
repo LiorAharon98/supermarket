@@ -1,5 +1,4 @@
 const en_translations = {
-    welcome: "welcome to my shopping cart",
     upload : 'upload',
     products: "products",
     pay: "pay",

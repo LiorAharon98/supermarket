@@ -16,8 +16,8 @@ const DataProvider = ({ children }) => {
   const [spinner, setSpinner] = useState(false);
   const [user, setUser] = useState();
 
-  const baseUrl = "https://node-js-shopping-cart.herokuapp.com/shopping-cart";
-  const localHostUrl = "http://localhost:8000/shopping-cart";
+  const baseUrl = "https://node-js-supermarket.herokuapp.com/supermarket";
+  const localHostUrl = "http://localhost:8000/supermarket";
   const fetchData = () => {
     setSpinner(true);
     axios.get(baseUrl).then((response) => {
@@ -91,6 +91,7 @@ const DataProvider = ({ children }) => {
     });
   };
   const sortProductsByPrice = (sortPrice) => {
+   
     products.sort((a, b) => {
       if (sortPrice === "high") {
         if (a.price < b.price) return 1;

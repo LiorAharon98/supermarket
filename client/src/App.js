@@ -16,7 +16,7 @@ const App = () => {
     <>
       {spinner && <LoadingScreen />}
 
-      <BrowserRouter basename="/shopping-cart">
+      <BrowserRouter basename="/supermarket">
         <Header />
 
         <Routes>

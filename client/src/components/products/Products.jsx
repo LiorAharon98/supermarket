@@ -24,7 +24,7 @@ const Products = ({ name, price, pictureUrl, addToCart }) => {
           addToCart(name, price);
         }}
       >
-        {countItems.find((item) => item.name) ? changeLanguage("added") : <FaShoppingCart size={"20px"} />}!
+        {countItems.find((item) => item.name) ? changeLanguage("added") : <FaShoppingCart size={"20px"} />}
       </button>
     </div>
   );

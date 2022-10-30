@@ -13,7 +13,7 @@ const HomePage = () => {
   };
   return (
     <>
-      <HeaderTag  text={"welcome"} />
+      <HeaderTag  text={"welcome to my supermarket"} />
       <div className={style.div_container}>
         {!toggle && <Button onClick={handleClick} to={"/"} text={"start"} />}
         <HomepageButtons toggle={toggle} />

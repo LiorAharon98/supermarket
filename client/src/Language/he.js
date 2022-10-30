@@ -1,5 +1,5 @@
 const he_translation = {
-  welcome: "ברוכים הבאים לאתר הקניות",
+ 'welcome to my supermarket' : 'ברוכים הבאים לסופרמרקט שלי',
   'sign up': "הרשמה",
   'sign in': "התחברות",
   upload : 'העלאה',
@@ -8,7 +8,7 @@ const he_translation = {
   password : 'סיסמא',
   'confirm password' : 'סיסמא חוזרת',
   username : 'שם משתמש',
-  total: "total",
+  total: "סך הכל",
   logout: "יציאה",
   add: "הוספה",
   email : 'אימייל',

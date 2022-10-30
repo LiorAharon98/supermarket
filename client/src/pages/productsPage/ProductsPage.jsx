@@ -34,7 +34,7 @@ const ProductsPage = () => {
   };
   return (
     <>
-      <HeaderTag text={`hello ${user ? user.username : ""}`} />
+      <HeaderTag text={` ${changeLanguage('hello')} ${user ? user.username : ""}`} />
       <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
       <Card style={{ flexWrap: "wrap", alignItems: "flex-start" }}>
         {productsFilter(toggleProducts).map((product, index) => {

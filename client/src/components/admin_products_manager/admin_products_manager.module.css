@@ -5,12 +5,10 @@
 }
 
 .img {
-  width: 70px;
-  height: 70px;
+  width: 75px;
+  height: 75px;
 }
-.p {
-  width: 30px;
-}
+
 .td {
   border-radius: 10px;
   border: 1px solid black;
@@ -21,4 +19,10 @@
   justify-content: space-around;
   min-height: 10vh;
   border: 1px solid black;
+}
+@media screen and (max-width: 768px) {
+  .p {
+    width: 30px;
+  }
+
 }

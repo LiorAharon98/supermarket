@@ -11,8 +11,8 @@ mongoose.connect(
     "mongodb+srv://liors-database:lior.ah98@cluster0.iybrzvm.mongodb.net/shopping-cart?retryWrites=true&w=majority"
 );
 
-app.use("/shopping-cart", productRouter);
+app.use("/supermarket", productRouter);
 
-app.use("/shopping-cart/user", userRouter);
+app.use("/supermarket/user", userRouter);
 
 app.listen(process.env.PORT || 8000);
