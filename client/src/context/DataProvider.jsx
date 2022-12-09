@@ -14,52 +14,49 @@ const DataProvider = ({ children }) => {
   const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [spinner, setSpinner] = useState(false);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
 
   const baseUrl = "https://node-js-supermarket.herokuapp.com/supermarket";
-  const localHostUrl = "http://localhost:8000/supermarket";
-  const fetchData = () => {
+  const localhostUrl = "http://localhost:8000/supermarket";
+  const fetchData = async () => {
     setSpinner(true);
-    axios.get(baseUrl).then((response) => {
-      setProducts(response.data);
-      setSpinner(false);
-    });
+    const response = await axios.get(baseUrl);
+    setProducts(response.data);
+    setSpinner(false);
   };
   useEffect(() => {
+    const data = sessionStorage.getItem("key");
+    if (data) setUser(JSON.parse(data));
     fetchData();
   }, []);
+  useEffect(() => {
+    if (Object.keys(user).length > 0) sessionStorage.setItem("key", JSON.stringify(user));
+  }, [user]);
 
   const changeLanguage = (value) => {
     return t(value).toLocaleLowerCase();
   };
 
-  const addProducts = (addedProducts, picture) => {
+  const addProducts = async (addedProducts, picture) => {
     const storageRef = ref(storage, `/products-images/${picture.name}`);
 
-    uploadBytes(storageRef, picture)
-      .then((snapshot) => {})
-      .then(() => {
-        getDownloadURL(storageRef).then((res) => {
-          const result = [...addedProducts, res];
-          axios.post(`${baseUrl}/add-product`, result).then((response) => {
-            fetchData();
-          });
-        });
-      });
+    await uploadBytes(storageRef, picture);
+
+    const pictureUrl = await getDownloadURL(storageRef);
+    const finalProduct = {...addedProducts, pictureUrl};
+    await axios.post(`${baseUrl}/add-product`, finalProduct);
+    fetchData();
   };
-  const deleteProduct = (productName) => {
+  const deleteProduct = async (productName) => {
     const product = { product: productName };
-    axios
-      .delete(`${baseUrl}/admin`, {
-        data: product,
-        headers: {
-          Accept: "application/json; charset=utf-8",
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        fetchData();
-      });
+    await axios.delete(`${baseUrl}/admin`, {
+      data: product,
+      headers: {
+        Accept: "application/json; charset=utf-8",
+        "Content-Type": "application/json",
+      },
+    });
+    await fetchData();
   };
   const addUser = (username, email, password) => {
     const user = {
@@ -70,28 +67,25 @@ const DataProvider = ({ children }) => {
     };
     axios.post(`${baseUrl}/user/sign-up`, user);
   };
-  const specificUser =  (username, password) => {
+  const specificUser = async (username, password) => {
     const user = { username, password };
-    const axiosResponse = axios.post(`${baseUrl}/user/sign-in`, user).then((response) => {
-      setUser(response.data[0]);
-      return response.data[0];
-    });
-    return axiosResponse;
+    const axiosResponse = await axios.post(`${baseUrl}/user/sign-in`, user);
+    const response = await axiosResponse.data[0];
+    if (!response) return false;
+    return response;
   };
 
-  const userPaymentFunc = (username, total) => {
+  const userPaymentFunc = async (username, total) => {
     const user = { username, total };
-    axios.post(`${baseUrl}/user/payment`, user);
+    await axios.post(`${baseUrl}/user/payment`, user);
   };
 
-  const updateProductPrice = (updatePrice, productName) => {
+  const updateProductPrice = async (updatePrice, productName) => {
     const product = { price: updatePrice, productName: productName };
-    axios.post(`${baseUrl}/admin`, product).then((response) => {
-      fetchData();
-    });
+    await axios.post(`${baseUrl}/admin`, product);
+    fetchData();
   };
   const sortProductsByPrice = (sortPrice) => {
-   
     products.sort((a, b) => {
       if (sortPrice === "high") {
         if (a.price < b.price) return 1;
@@ -105,8 +99,13 @@ const DataProvider = ({ children }) => {
       }
     });
   };
-
+  const logOut = () => {
+    setUser({});
+    sessionStorage.removeItem("key");
+  };
   const value = {
+    setUser,
+    logOut,
     sortProductsByPrice,
     updateProductPrice,
     deleteProduct,

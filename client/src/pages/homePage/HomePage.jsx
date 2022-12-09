@@ -11,6 +11,7 @@ const HomePage = () => {
     setToggle(true);
     
   };
+
   return (
     <>
       <HeaderTag  text={"welcome to my supermarket"} />

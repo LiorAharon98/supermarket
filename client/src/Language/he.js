@@ -27,7 +27,7 @@ const he_translation = {
   dairy: "חלב",
   juices: "מיצים",
   meat: "בשר",
-  can: "שימורים",
+  canned: "שימורים",
   other: "אחר",
   hello: "שלום",
   'sort price': "מיון לפי מחיר",
@@ -57,7 +57,7 @@ const he_translation = {
   about : 'אודות',
   support : 'תמיכה',
   'user already exist' : 'משתמש קיים',
-  'frozen food ' : 'מזון קפוא',
+  'frozen' : 'קפואים',
   start : 'שנתחיל?',
   hello : 'שלום',
   homepage :'דף הבית'

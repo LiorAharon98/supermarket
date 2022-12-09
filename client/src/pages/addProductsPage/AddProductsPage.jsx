@@ -34,7 +34,7 @@ const AddProductsPage = () => {
     const category = categoryInp.current.value;
 
     const picture = imgInp.current.files[0];
-    const product = [name, price, category];
+    const product = { name, price, category };
 
     if (checkInp(name, price)) return alert("incorrect details");
     addProducts(product, picture);
@@ -43,31 +43,30 @@ const AddProductsPage = () => {
   return (
     <Card>
       <div>
-
-      <HeaderTag text={"add product"} />
-      <div className={style.add_product_container}>
-        {inp.map((input, index) => {
-          return (
-            <input
-            key={index}
-            className={style.inp}
-            type={input.type}
-            placeholder={input.placeholder}
-            ref={input.ref}
-            ></input>
+        <HeaderTag text={"add product"} />
+        <div className={style.add_product_container}>
+          {inp.map((input, index) => {
+            return (
+              <input
+                key={index}
+                className={style.inp}
+                type={input.type}
+                placeholder={input.placeholder}
+                ref={input.ref}
+              ></input>
             );
           })}
-        <input ref={imgInp} type="file" id="inputFile" style={{ display: "none" }} />
-        <div className={style.label_container} >
-          <label className={style.label_inp_file} htmlFor="inputFile">
-            {changeLanguage("upload")}
-          </label>
-        </div>
-        <div>
-          <Button to={"/"} text={"add"} onClick={handleClick} />
+          <input ref={imgInp} type="file" id="inputFile" style={{ display: "none" }} />
+          <div className={style.label_container}>
+            <label className={style.label_inp_file} htmlFor="inputFile">
+              {changeLanguage("upload")}
+            </label>
+          </div>
+          <div>
+            <Button to={"/"} text={"add"} onClick={handleClick} />
+          </div>
         </div>
       </div>
-          </div>
     </Card>
   );
 };

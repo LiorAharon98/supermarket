@@ -28,13 +28,13 @@ const AdminProductsManager = ({ name, price, pictureUrl }) => {
             <p className={style.p}>{price}</p>{" "}
           </td>
           <td className={style.button_container}>
-            <Button style={{ width: "100px" }} to={"/"} text={"delete"} onClick={deleteFunc} />
-
             {!updatePriceToggle ? (
               <Button style={{ width: "100px" }} to={"/"} text={"update"} onClick={updateFunc} />
             ) : (
               <UpdatePrice name={name} setUpdateToggle={setUpdatePriceToggle} />
             )}
+            <Button style={{ width: "100px" }} to={"/"} text={"delete"} onClick={deleteFunc} />
+
           </td>
         </tr>
       </thead>

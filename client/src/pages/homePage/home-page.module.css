@@ -14,6 +14,7 @@ body {
 @media screen and (max-width: 768px) {
   body {
     background-size: contain;
+    background-position-y: 71%;
   }
 
   .div_container {

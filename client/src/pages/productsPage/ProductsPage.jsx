@@ -8,6 +8,7 @@ import { useState } from "react";
 import Button from "../../components/button/Button";
 import HeaderTag from "../../components/header_tag/HeaderTag";
 import Card from "../../components/card/Card";
+import { useEffect } from "react";
 const ProductsPage = () => {
   const { products, changeLanguage, user } = useDataProvider();
 
@@ -34,11 +35,11 @@ const ProductsPage = () => {
   };
   return (
     <>
-      <HeaderTag text={` ${changeLanguage('hello')} ${user ? user.username : ""}`} />
+      <HeaderTag text={` ${changeLanguage("hello")} ${Object.keys(user).length>0 ? user.username : ""}`} />
       <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
       <Card style={{ flexWrap: "wrap", alignItems: "flex-start" }}>
         {productsFilter(toggleProducts).map((product, index) => {
-          return <Products key={index} {...product} addToCart={addToCart} />;
+          return <Products key={index} {...product} addToCart={addToCart} cart={cart} />;
         })}
 
         <Products />

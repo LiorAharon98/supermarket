@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./user_page.module.css"
 const UsersPage = ({ username, email, shoppingHistory }) => {
   return (
     <>
-        <tr>
+        <tr className={styles.container}>
           <td>{username}</td>
           <td>{email}</td>
 

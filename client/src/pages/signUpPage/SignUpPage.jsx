@@ -25,6 +25,7 @@ const SignUpPage = () => {
 
   const navigate = useNavigate();
   const pwd = watch("password");
+  const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   const { addUser, changeLanguage, specificUser } = useDataProvider();
 
   const handleClick = async (data) => {
@@ -45,7 +46,7 @@ const SignUpPage = () => {
             control={control}
             rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
           />
-          <Input name="email" control={control} rules={{ required: "fill please" }} />
+          <Input  name="email" control={control} rules={{ required: "fill please", validate:(value) => regex.test(value) || 'email not vaild'  }} />
           <Input name="password" control={control} rules={{ required: "fill please" }} />
           <Input
             name="confirm password"

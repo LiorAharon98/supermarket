@@ -18,7 +18,7 @@ const SignInPage = () => {
     username: "",
     password: "",
   });
-  const { specificUser, changeLanguage } = useDataProvider();
+  const { specificUser, changeLanguage,setUser } = useDataProvider();
   const navigate = useNavigate();
   const [errorDetails, setErrorDetails] = useState(false);
   const handleClick = async (data) => {
@@ -26,6 +26,8 @@ const SignInPage = () => {
     if (username === "Admin" && password === "1111") return navigate("/admin");
     const user = await specificUser(username, password);
     if (!user) return setErrorDetails("user not exist");
+    sessionStorage.setItem("key", JSON.stringify(user));
+    setUser(user);
     navigate("/products", { state: user });
   };
   return (

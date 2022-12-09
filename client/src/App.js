@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/homePage/HomePage";
 import SignInPage from "./pages/signInPage/SignInPage";
 import SignUpPage from "./pages/signUpPage/SignUpPage";
@@ -16,7 +16,7 @@ const App = () => {
     <>
       {spinner && <LoadingScreen />}
 
-      <BrowserRouter basename="/supermarket">
+      <HashRouter >
         <Header />
 
         <Routes>
@@ -29,7 +29,7 @@ const App = () => {
           <Route path="/add-product" element={<AddProductsPage />}></Route>
         </Routes>
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 };

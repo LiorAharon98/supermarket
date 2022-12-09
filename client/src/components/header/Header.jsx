@@ -3,7 +3,7 @@ import { useDataProvider } from "../../context/DataProvider";
 import Button from "../button/Button";
 import style from "./header.module.css";
 const Header = () => {
-  const { changeLanguage,user  } = useDataProvider();
+  const { changeLanguage,user,logOut  } = useDataProvider();
 
 
   return (
@@ -11,7 +11,7 @@ const Header = () => {
       <li>
         <LanguageSelect />
       </li>
-      <li><Button to={"/"} text={changeLanguage( user ?"logout" : 'homepage')} /></li>
+      <li><Button to={"/"} text={changeLanguage( Object.keys(user).length >0 ?"logout" : 'homepage')} onClick={user && logOut} /></li>
     </div>
   );
 };

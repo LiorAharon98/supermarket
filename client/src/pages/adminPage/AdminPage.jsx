@@ -55,7 +55,7 @@ const AdminPage = () => {
       </div>
 
       {toggleAdminOptions === 0 && (
-        <Card>
+        <Card style={{marginTop : '40px'}}>
           <table className={style.table_products_container}>
             {products.map((product, index) => {
               return <AdminProductsManager key={index} {...product} />;
