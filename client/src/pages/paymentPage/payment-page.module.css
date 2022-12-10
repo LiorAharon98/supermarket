@@ -5,7 +5,7 @@
   width: 350px;
   border: 2px solid white;
   border-radius: 10px;
-  background-color: rgba(172, 172, 172, 0.866);
+  background: linear-gradient(to top,rgb(19, 119, 250),rgb(253, 241, 241));
 }
 
 

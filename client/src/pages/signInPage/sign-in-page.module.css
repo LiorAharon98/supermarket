@@ -1,19 +1,15 @@
 
 .sign_in_container {
-  width: 300px;
-  height: 450px;
+  width: 350px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: rgba(244, 244, 244, 0.801);
+  background: linear-gradient(to top,rgb(214, 245, 255),rgb(63, 185, 255));
   border-radius: 10px;
 }
-.inp {
-  border: none;
-  border-radius: 10px;
-  height: 30px;
+.register{
   text-align: center;
-  outline-color: green;
 }
 
 

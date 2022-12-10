@@ -22,21 +22,21 @@
 }
 .add_btn {
   border: none;
-  background-color: rgb(3, 121, 255);
-  border-radius: 10px;
-  width: 90px;
+  background-color: rgb(3, 154, 255);
+  border-radius: 5px;
+  width: 70%;
   margin-bottom: 5px;
   height: 25px;
   color: white;
 }
 .added_btn {
-  background-color: rgba(2, 178, 213, 0.827);
+  background-color: rgba(1, 145, 255, 0.827);
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 5px;
   font-size: 15px;
   height: 25px;
-  width: 90px;
+  width: 70%;
   transition: 0.5s;
 }
 

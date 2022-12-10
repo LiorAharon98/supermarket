@@ -5,10 +5,9 @@ import styles from "./products_page_style.module.css";
 import Products from "../../components/products/Products";
 import ProductCategory from "../../components/product_category/ProductCategory";
 import { useState } from "react";
-import Button from "../../components/button/Button";
 import HeaderTag from "../../components/header_tag/HeaderTag";
 import Card from "../../components/card/Card";
-import { useEffect } from "react";
+import { FiShoppingCart } from "react-icons/fi";
 const ProductsPage = () => {
   const { products, changeLanguage, user } = useDataProvider();
 
@@ -35,7 +34,18 @@ const ProductsPage = () => {
   };
   return (
     <>
-      <HeaderTag text={` ${changeLanguage("hello")} ${Object.keys(user).length>0 ? user.username : ""}`} />
+      {cart.length > 0 && (
+        <div className={styles.shopping_cart_container}>
+          <FiShoppingCart
+            className={styles.shopping_cart}
+            onClick={(e) => {
+              navigate("/user/payment", { state: { cart, user: user } });
+            }}
+          />
+        </div>
+      )}
+      <HeaderTag text={` ${changeLanguage("hello")} ${Object.keys(user).length > 0 ? user.username : ""}`} />
+
       <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
       <Card style={{ flexWrap: "wrap", alignItems: "flex-start" }}>
         {productsFilter(toggleProducts).map((product, index) => {
@@ -44,18 +54,6 @@ const ProductsPage = () => {
 
         <Products />
       </Card>
-      <div>
-        {cart.length > 0 && (
-          <Button
-            to={"/"}
-            text={changeLanguage("payment")}
-            onClick={(e) => {
-              e.preventDefault();
-              navigate("/user/payment", { state: { cart, user: user } });
-            }}
-          />
-        )}
-      </div>
     </>
   );
 };

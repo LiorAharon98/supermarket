@@ -1,25 +1,42 @@
-.inp_sign_up{
-    margin: 5px;
-    height: 30px;
-    text-align: center;
-    border: none;
-    border-radius: 10px;
-    outline-color: rgb(0, 147, 0);
+.container {
+  padding-left: 10px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 130px;
 }
-.inp_sign_up_error{
-    margin: 5px;
-    height: 30px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid red;
-    outline-color: rgb(0, 147, 0);
 
+.inp_sign_up {
+  font-size: 20px;
+  margin: 5px;
+  height: 30px;
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: rgba(240, 248, 255, 0);
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
-.error{
-    margin: 0;
-    padding: 0px;
-color : red;
-text-decoration: underline;
-text-align: center;
-
+.label {
+  color: white;
+}
+.label:hover {
+  color: rgb(0, 187, 255);
+}
+.inp_sign_up:hover {
+  border-bottom: 1px solid rgb(0, 187, 255);
+}
+.inp_sign_up_error {
+  height: 30px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid red;
+  outline: none;
+  background-color: rgba(240, 248, 255, 0);
+}
+.error {
+  margin: 0;
+  padding: 0px;
+  color: red;
+  text-decoration: underline;
 }

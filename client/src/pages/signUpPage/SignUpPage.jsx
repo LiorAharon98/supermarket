@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDataProvider } from "../../context/DataProvider";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "./sign-up-page.module.css";
 import { useForm } from "react-hook-form";
 import Button from "../../components/button/Button";
@@ -25,7 +25,9 @@ const SignUpPage = () => {
 
   const navigate = useNavigate();
   const pwd = watch("password");
-  const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  const regex = '@gmail.com'
+  
+  
   const { addUser, changeLanguage, specificUser } = useDataProvider();
 
   const handleClick = async (data) => {
@@ -39,14 +41,14 @@ const SignUpPage = () => {
   return (
     <Card >
       <div>
-        <HeaderTag text={"sign up"} />
         <div className={style.sign_up_container}>
+        <HeaderTag text={"sign up"} />
           <Input
             name="username"
             control={control}
             rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
           />
-          <Input  name="email" control={control} rules={{ required: "fill please", validate:(value) => regex.test(value) || 'email not vaild'  }} />
+          <Input  name="email" control={control} rules={{ required: "fill please", validate:(value) => value.includes(regex) || 'email not vaild'  }} />
           <Input name="password" control={control} rules={{ required: "fill please" }} />
           <Input
             name="confirm password"
@@ -56,6 +58,9 @@ const SignUpPage = () => {
 
           {toggleError && <ErrorTag text={toggleError} />}
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign up")} />
+          <p style={{textAlign : 'center'}}>
+          has an account <Link to={'/user/sign-in'}>log in</Link>
+          </p>
         </div>
       </div>
     </Card>

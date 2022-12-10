@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
 import { useState } from "react";
 import HeaderTag from "../../components/header_tag/HeaderTag";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDataProvider } from "../../context/DataProvider";
 import { useForm } from "react-hook-form";
 import Button from "../../components/button/Button";
@@ -33,8 +32,8 @@ const SignInPage = () => {
   return (
     <Card>
       <div>
-        <HeaderTag text={"sign in"} />
         <div className={style.sign_in_container}>
+        <HeaderTag text={"sign in"} />
           <Input
             control={control}
             name="username"
@@ -47,6 +46,10 @@ const SignInPage = () => {
           />
           {errorDetails && <ErrorTag text={errorDetails} />}
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign in")} />
+          <p className={style.register}>
+          doesn't  has an account?
+      <Link to={'/user/sign-up'} >register</Link>
+          </p>
         </div>
       </div>
     </Card>

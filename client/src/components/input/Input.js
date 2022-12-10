@@ -13,22 +13,23 @@ const Input = ({ name, control, rules }) => {
       defaultValue=""
       render={({ field, fieldState: { error } }) => {
         return (
-          <>
+          <div className={styles.container} >
+
+          <label className={styles.label} htmlFor={name}>{changeLanguage(name)}</label>
             <input
-              type={name === "password" ? "password" : "text"}
-              className={error ? styles.inp_sign_up_error : styles.inp_sign_up}
-              name={name}
-              {...field}
-              placeholder={changeLanguage(name)}
+            id={name}
+            type={name === "password" ? "password" : "text"}
+            className={error ? styles.inp_sign_up_error : styles.inp_sign_up}
+            name={name}
+            {...field}
             ></input>
             {error && <p className={styles.error}>{error.message}</p>}
-          </>
+            </div>
         );
       }}
     />
   );
 };
 
-{
-}
+
 export default Input;

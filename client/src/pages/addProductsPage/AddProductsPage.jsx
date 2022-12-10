@@ -5,6 +5,7 @@ import { useDataProvider } from "../../context/DataProvider";
 import HeaderTag from "../../components/header_tag/HeaderTag";
 import style from "./add-product-page.module.css";
 import Card from "../../components/card/Card";
+import {BsCardImage} from "react-icons/bs"
 const AddProductsPage = () => {
   const navigate = useNavigate();
   const nameInp = useRef();
@@ -19,10 +20,11 @@ const AddProductsPage = () => {
     { type: "text", placeholder: "category", ref: categoryInp },
   ];
 
-  const checkInp = (name, price) => {
+  const checkInp = (name, price, img) => {
     let incorrectDetails = false;
     if (name.length < 3) incorrectDetails = true;
     if (price < 2) incorrectDetails = true;
+    if (!img) incorrectDetails = true;
     return incorrectDetails;
   };
 
@@ -36,34 +38,37 @@ const AddProductsPage = () => {
     const picture = imgInp.current.files[0];
     const product = { name, price, category };
 
-    if (checkInp(name, price)) return alert("incorrect details");
+    if (checkInp(name, price, picture)) return alert("incorrect details");
     addProducts(product, picture);
     navigate("/admin");
   };
   return (
     <Card>
       <div>
-        <HeaderTag text={"add product"} />
         <div className={style.add_product_container}>
+          <HeaderTag text={"add product"} />
           {inp.map((input, index) => {
             return (
-              <input
-                key={index}
-                className={style.inp}
-                type={input.type}
-                placeholder={input.placeholder}
-                ref={input.ref}
-              ></input>
+              <div className={style.inp_label_container}>
+                <label htmlFor={input.placeholder}>{changeLanguage(`product ${input.placeholder}`)}</label>
+                <input
+                  id={input.placeholder}
+                  key={index}
+                  className={style.inp}
+                  type={input.type}
+                  ref={input.ref}
+                ></input>
+              </div>
             );
           })}
           <input ref={imgInp} type="file" id="inputFile" style={{ display: "none" }} />
           <div className={style.label_container}>
             <label className={style.label_inp_file} htmlFor="inputFile">
-              {changeLanguage("upload")}
+             <BsCardImage className={style.image_icon} />
             </label>
           </div>
           <div>
-            <Button to={"/"} text={"add"} onClick={handleClick} />
+            <Button to={"/"} text={"add product"} onClick={handleClick} />
           </div>
         </div>
       </div>

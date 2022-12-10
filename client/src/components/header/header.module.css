@@ -4,7 +4,8 @@
   display: flex;
   justify-content: space-around;
 }
-li {
+.header_container {
+  width: 20%;
   list-style: none;
 }
 @media screen and (max-width :768px) {

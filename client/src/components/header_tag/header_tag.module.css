@@ -1,9 +1,6 @@
 .text {
-  color: rgba(31, 31, 31, 0.874);
   text-align: center;
-  background-color: rgba(252, 252, 252, 0.896);
-  border-radius: 10px;
-  margin: 2px;
+  margin: 0px;
 }
 .homepage_text {
   color: white;

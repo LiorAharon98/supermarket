@@ -19,7 +19,6 @@ const he_translation = {
   'delete products': "מחיקת מוצרים",
   'add product': "הוספת מוצרים",
   'update price': "עדכון מחיר",
-  users: "משתמשים",
   delete: "מחיקה",
   update: "עדכון",
   all: "הכל",
@@ -48,7 +47,7 @@ const he_translation = {
   eggs: "ביצים",
   sugar: "סוכר",
   cheese: "גבינה",
-  'chiken brast' : 'חזה עוף',
+  'chicken breast' : 'חזה עוף',
   'chocolate milk': "שוקו",
   'french fries' : "צ'יפס",
   'sweet corn' : 'תירס מתוק',
@@ -59,7 +58,9 @@ const he_translation = {
   'user already exist' : 'משתמש קיים',
   'frozen' : 'קפואים',
   start : 'שנתחיל?',
-  hello : 'שלום',
-  homepage :'דף הבית'
+  homepage :'דף הבית',
+  'product name' : 'שם מוצר',
+  'product price' : 'מחיר',
+  'product category' : 'קטגוריה'
 }
 export default he_translation

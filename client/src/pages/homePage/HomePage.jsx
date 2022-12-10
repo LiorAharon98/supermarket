@@ -9,14 +9,17 @@ const HomePage = () => {
   const handleClick = (e) => {
     e.preventDefault();
     setToggle(true);
-    
   };
 
   return (
     <>
-      <HeaderTag  text={"welcome to my supermarket"} />
+      <HeaderTag text={"welcome to my supermarket"} />
       <div className={style.div_container}>
-        {!toggle && <Button onClick={handleClick} to={"/"} text={"start"} />}
+        {!toggle && (
+          <div style={{width : '270px'}}>
+            <Button onClick={handleClick} to={"/"} text={"start"} />
+          </div>
+        )}
         <HomepageButtons toggle={toggle} />
       </div>
     </>

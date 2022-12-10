@@ -3,7 +3,7 @@ width: 30%;
 border-radius: 10px;
 min-height: 60vh;
 transition: 500ms;
-background-color: white;
+background: linear-gradient(to top,rgb(0, 157, 255),white);
 
 display: flex;
 flex-direction: column;

@@ -1,10 +1,10 @@
 body {
-  background-image: url("/public/pictures/background.webp");
-  background-position: center;
+  background: linear-gradient(to top,rgb(250, 252, 255),rgb(47, 175, 255));
 }
 
 .div_container {
-  min-height: 68vh;
+  width: 100%;
+  min-height: 67vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,15 +12,6 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  body {
-    background-size: contain;
-    background-position-y: 71%;
-  }
 
-  .div_container {
-    display: flex;
-    min-height: 65vh;
-    align-items: center;
-    padding: 0px;
-  }
+
 }
