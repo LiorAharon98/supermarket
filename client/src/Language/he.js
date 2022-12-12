@@ -61,6 +61,13 @@ const he_translation = {
   homepage :'דף הבית',
   'product name' : 'שם מוצר',
   'product price' : 'מחיר',
-  'product category' : 'קטגוריה'
+  'product category' : 'קטגוריה',
+  'doesn\'t has an account' : 'אין חשבון',
+  register : 'הירשם',
+  'log in' : 'התחבר',
+  'has an account' : 'יש לך חשבון',
+  'are you sure' : 'האם אתה בטוח',
+  close : 'סגירה',
+  'you are going to' : 'אתה עומד לבצע'
 }
 export default he_translation

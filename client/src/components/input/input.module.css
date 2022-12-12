@@ -26,6 +26,9 @@
 .inp_sign_up:hover {
   border-bottom: 1px solid rgb(0, 187, 255);
 }
+.inp_sign_up:focus{
+  border-bottom: 1px solid rgb(0, 187, 255);
+}
 .inp_sign_up_error {
   height: 30px;
   text-align: center;

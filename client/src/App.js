@@ -16,7 +16,7 @@ const App = () => {
     <>
       {spinner && <LoadingScreen />}
 
-      <HashRouter >
+      <HashRouter>
         <Header />
 
         <Routes>

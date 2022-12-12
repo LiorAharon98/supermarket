@@ -25,9 +25,8 @@ const SignUpPage = () => {
 
   const navigate = useNavigate();
   const pwd = watch("password");
-  const regex = '@gmail.com'
-  
-  
+  const regex = "@gmail.com";
+
   const { addUser, changeLanguage, specificUser } = useDataProvider();
 
   const handleClick = async (data) => {
@@ -39,16 +38,20 @@ const SignUpPage = () => {
     navigate("/user/sign-in");
   };
   return (
-    <Card >
+    <Card>
       <div>
         <div className={style.sign_up_container}>
-        <HeaderTag text={"sign up"} />
+          <HeaderTag text={"sign up"} />
           <Input
             name="username"
             control={control}
             rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
           />
-          <Input  name="email" control={control} rules={{ required: "fill please", validate:(value) => value.includes(regex) || 'email not vaild'  }} />
+          <Input
+            name="email"
+            control={control}
+            rules={{ required: "fill please", validate: (value) => value.includes(regex) || "email not vaild" }}
+          />
           <Input name="password" control={control} rules={{ required: "fill please" }} />
           <Input
             name="confirm password"
@@ -58,8 +61,11 @@ const SignUpPage = () => {
 
           {toggleError && <ErrorTag text={toggleError} />}
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign up")} />
-          <p style={{textAlign : 'center'}}>
-          has an account <Link to={'/user/sign-in'}>log in</Link>
+          <p style={{ textAlign: "center" }}>
+            {changeLanguage("has an account")}?{" "}
+            <Link style={{ color: "white" }} to={"/user/sign-in"}>
+              {changeLanguage("log in")}
+            </Link>
           </p>
         </div>
       </div>

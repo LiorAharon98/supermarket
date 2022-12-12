@@ -13,7 +13,6 @@ const HomePage = () => {
 
   return (
     <>
-      <HeaderTag text={"welcome to my supermarket"} />
       <div className={style.div_container}>
         {!toggle && (
           <div style={{width : '270px'}}>

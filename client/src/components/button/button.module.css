@@ -16,6 +16,7 @@
   text-decoration: none;
 }
 #button:hover {
+  width: 180px;
   transition: 700ms;
   background-color: rgb(0, 119, 255);
   color: white;

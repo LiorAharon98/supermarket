@@ -47,8 +47,8 @@ const SignInPage = () => {
           {errorDetails && <ErrorTag text={errorDetails} />}
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign in")} />
           <p className={style.register}>
-          doesn't  has an account?
-      <Link to={'/user/sign-up'} >register</Link>
+          {changeLanguage('doesn\'t has an account')}?
+      <Link style={{color :'white'}} to={'/user/sign-up'} >{changeLanguage('register')}</Link>
           </p>
         </div>
       </div>

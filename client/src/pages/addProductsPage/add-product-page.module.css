@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  box-shadow: 1px 1px 10px 2px #f3f3f3;
 }
 
 .image_icon{

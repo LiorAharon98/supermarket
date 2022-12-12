@@ -1,11 +1,13 @@
 
 .sign_in_container {
+  box-shadow: 1px 1px 5px 2px #e6e6e6;
+  margin: 10px;
   width: 350px;
   height: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: linear-gradient(to top,rgb(214, 245, 255),rgb(63, 185, 255));
+  background: linear-gradient(to top,rgb(200, 240, 253),rgb(63, 185, 255));
   border-radius: 10px;
 }
 .register{

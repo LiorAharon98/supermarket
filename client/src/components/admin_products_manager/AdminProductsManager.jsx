@@ -4,17 +4,24 @@ import { useDataProvider } from "../../context/DataProvider";
 import Button from "../button/Button";
 import style from "./admin_products_manager.module.css";
 import UpdatePrice from "../update_price/UpdatePrice";
-const AdminProductsManager = ({ name, price, pictureUrl }) => {
-  const { deleteProduct, changeLanguage } = useDataProvider();
+import Modal from "../modal/Modal";
+const AdminProductsManager = ({ name, price, pictureUrl,setCurrentProductName }) => {
+  const { deleteProduct, changeLanguage, changeModal, toggleModal, closeModal } = useDataProvider();
   const [updatePriceToggle, setUpdatePriceToggle] = useState(false);
-  const deleteFunc = (e) => {
-    e.preventDefault();
-    deleteProduct(name);
-  };
+
   const updateFunc = (e) => {
     e.preventDefault();
     setUpdatePriceToggle(true);
   };
+  // const deleteFunc = (e) => {
+  //   e.preventDefault();
+  //   deleteProduct(name);
+  // };
+  const clickHandler = (e)=>{
+    e.preventDefault()
+    changeModal()
+    setCurrentProductName(name)
+  }
   return (
     <>
       <thead className={style.thead_container}>
@@ -33,11 +40,12 @@ const AdminProductsManager = ({ name, price, pictureUrl }) => {
             ) : (
               <UpdatePrice name={name} setUpdateToggle={setUpdatePriceToggle} />
             )}
-            <Button style={{ width: "100px" }} to={"/"} text={"delete"} onClick={deleteFunc} />
-
+            <Button style={{ width: "100px" }} to={"/"} text={"delete"} onClick={clickHandler} />
           </td>
         </tr>
       </thead>
+   
+        
     </>
   );
 };

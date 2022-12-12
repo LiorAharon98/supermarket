@@ -5,9 +5,8 @@ import { useDataProvider } from "../../context/DataProvider";
 import HeaderTag from "../../components/header_tag/HeaderTag";
 import style from "./add-product-page.module.css";
 import Card from "../../components/card/Card";
-import {BsCardImage} from "react-icons/bs"
-const AddProductsPage = () => {
-  const navigate = useNavigate();
+import { BsCardImage } from "react-icons/bs";
+const AddProductsPage = ({ func }) => {
   const nameInp = useRef();
   const priceInp = useRef();
   const categoryInp = useRef();
@@ -36,11 +35,11 @@ const AddProductsPage = () => {
     const category = categoryInp.current.value;
 
     const picture = imgInp.current.files[0];
-    const product = { name, price, category };
+    const product = { name, price: Number(price), category };
 
     if (checkInp(name, price, picture)) return alert("incorrect details");
     addProducts(product, picture);
-    navigate("/admin");
+    func(0);
   };
   return (
     <Card>
@@ -49,7 +48,7 @@ const AddProductsPage = () => {
           <HeaderTag text={"add product"} />
           {inp.map((input, index) => {
             return (
-              <div className={style.inp_label_container}>
+              <div key={index} className={style.inp_label_container}>
                 <label htmlFor={input.placeholder}>{changeLanguage(`product ${input.placeholder}`)}</label>
                 <input
                   id={input.placeholder}
@@ -64,7 +63,7 @@ const AddProductsPage = () => {
           <input ref={imgInp} type="file" id="inputFile" style={{ display: "none" }} />
           <div className={style.label_container}>
             <label className={style.label_inp_file} htmlFor="inputFile">
-             <BsCardImage className={style.image_icon} />
+              <BsCardImage className={style.image_icon} />
             </label>
           </div>
           <div>

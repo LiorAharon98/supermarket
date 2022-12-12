@@ -7,6 +7,10 @@
   border-radius: 10px;
   background: linear-gradient(to top,rgb(19, 119, 250),rgb(253, 241, 241));
 }
+.img{
+  width: 50px;
+  height: 50px;
+}
 
 
 #total {
@@ -21,7 +25,7 @@
   align-items: center;
   background-color: white;
   margin: 10px;
-  height: 40px;
+  height: 50px;
   border-radius: 10px;
 }
 .product {

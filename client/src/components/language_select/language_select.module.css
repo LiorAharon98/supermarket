@@ -7,6 +7,7 @@
   height: 30px;
   font-size: 15px;
   background-color: rgb(241, 241, 241);
+  outline: none;
 }
 .option_container{
     font-size: 18px;

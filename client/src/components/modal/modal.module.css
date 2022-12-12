@@ -1,0 +1,28 @@
+.container {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.833);
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  transition: 500ms;
+}
+.container_inactive {
+  width: 0px;
+  transition: 500ms;
+}
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120vh;
+}
+.test {
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  background-color: white;
+}

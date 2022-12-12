@@ -21,9 +21,9 @@ const ProductsPage = () => {
     setToggleProducts(category);
   };
 
-  const addToCart = (productName, price) => {
+  const addToCart = (productName, price,pictureUrl) => {
     setCart((prev) => {
-      return [...prev, { productName: productName, price: price }];
+      return [...prev, {productName,price,pictureUrl }];
     });
   };
 
@@ -34,16 +34,6 @@ const ProductsPage = () => {
   };
   return (
     <>
-      {cart.length > 0 && (
-        <div className={styles.shopping_cart_container}>
-          <FiShoppingCart
-            className={styles.shopping_cart}
-            onClick={(e) => {
-              navigate("/user/payment", { state: { cart, user: user } });
-            }}
-          />
-        </div>
-      )}
       <HeaderTag text={` ${changeLanguage("hello")} ${Object.keys(user).length > 0 ? user.username : ""}`} />
 
       <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
@@ -54,6 +44,16 @@ const ProductsPage = () => {
 
         <Products />
       </Card>
+        {cart.length > 0 && (
+          <div
+            onClick={() => {
+              navigate("/user/payment", { state: { cart, user: user } });
+            }}
+            className={styles.shopping_cart_container}
+          >
+            <FiShoppingCart className={styles.shopping_cart} />
+          </div>
+        )}
     </>
   );
 };

@@ -14,8 +14,9 @@ const DataProvider = ({ children }) => {
   const { t } = useTranslation();
   const [products, setProducts] = useState([]);
   const [spinner, setSpinner] = useState(false);
+  const [toggleModal, setToggleModal] = useState(false);
   const [user, setUser] = useState({});
-
+ 
   const baseUrl = "https://node-js-supermarket.herokuapp.com/supermarket";
   const localhostUrl = "http://localhost:8000/supermarket";
   const fetchData = async () => {
@@ -44,7 +45,7 @@ const DataProvider = ({ children }) => {
 
     const pictureUrl = await getDownloadURL(storageRef);
     const finalProduct = {...addedProducts, pictureUrl};
-    await axios.post(`${baseUrl}/add-product`, finalProduct);
+    await axios.post(`${baseUrl}/admin`, finalProduct);
     fetchData();
   };
   const deleteProduct = async (productName) => {
@@ -82,7 +83,7 @@ const DataProvider = ({ children }) => {
 
   const updateProductPrice = async (updatePrice, productName) => {
     const product = { price: updatePrice, productName: productName };
-    await axios.post(`${baseUrl}/admin`, product);
+    await axios.put(`${baseUrl}/admin`, product);
     fetchData();
   };
   const sortProductsByPrice = (sortPrice) => {
@@ -103,7 +104,19 @@ const DataProvider = ({ children }) => {
     setUser({});
     sessionStorage.removeItem("key");
   };
+  const changeModal = () => {
+    setToggleModal(true);
+  };
+  const closeModal = ()=>{
+  
+    setToggleModal(false);
+  }
+
   const value = {
+    setToggleModal,
+    toggleModal,
+    changeModal,
+    closeModal,
     setUser,
     logOut,
     sortProductsByPrice,

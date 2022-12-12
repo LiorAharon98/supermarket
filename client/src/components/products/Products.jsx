@@ -15,7 +15,7 @@ const Products = ({ name, price, pictureUrl, addToCart, cart }) => {
         className={cart.find((item) => item.productName === name) ? style.added_btn : style.add_btn}
         onClick={() => {
           if (Object.keys(user).length ===0) return alert("only users can purchase ");
-          addToCart(name, price);
+          addToCart(name, price,pictureUrl);
         }}
       >
         {cart.find((item) => item.productName === name) ? changeLanguage("added") : <FaShoppingCart size={"20px"} />}
