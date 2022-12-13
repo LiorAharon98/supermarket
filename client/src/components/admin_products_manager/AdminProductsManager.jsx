@@ -13,10 +13,7 @@ const AdminProductsManager = ({ name, price, pictureUrl,setCurrentProductName })
     e.preventDefault();
     setUpdatePriceToggle(true);
   };
-  // const deleteFunc = (e) => {
-  //   e.preventDefault();
-  //   deleteProduct(name);
-  // };
+
   const clickHandler = (e)=>{
     e.preventDefault()
     changeModal()

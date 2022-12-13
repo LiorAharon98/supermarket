@@ -21,12 +21,23 @@ const ProductsPage = () => {
     setToggleProducts(category);
   };
 
-  const addToCart = (productName, price,pictureUrl) => {
+  const addToCart = (productName, price, pictureUrl) => {
     setCart((prev) => {
-      return [...prev, {productName,price,pictureUrl }];
+      return [...prev, { productName, price, pictureUrl, index: cart.length }];
     });
   };
-
+  const removeFromCart = (name) => {
+    const cart2 = [...cart];
+    const index = cart2
+      .map((item) => {
+        return item.productName;
+      })
+      .indexOf(name);
+    if (index !== -1) {
+      cart2.splice(index, 1);
+    }
+    setCart(cart2);
+  };
   const productsFilter = (filter) => {
     return filter === "all"
       ? products.map((product) => product)
@@ -39,21 +50,30 @@ const ProductsPage = () => {
       <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
       <Card style={{ flexWrap: "wrap", alignItems: "flex-start" }}>
         {productsFilter(toggleProducts).map((product, index) => {
-          return <Products key={index} {...product} addToCart={addToCart} cart={cart} />;
+          return (
+            <Products
+           
+              key={index}
+              {...product}
+              addToCart={addToCart}
+              cart={cart}
+              removeFromCart={removeFromCart}
+            />
+          );
         })}
 
         <Products />
       </Card>
-        {cart.length > 0 && (
-          <div
-            onClick={() => {
-              navigate("/user/payment", { state: { cart, user: user } });
-            }}
-            className={styles.shopping_cart_container}
-          >
-            <FiShoppingCart className={styles.shopping_cart} />
-          </div>
-        )}
+      {cart.length > 0 && (
+        <div
+          onClick={() => {
+            navigate("/user/payment", { state: { cart, user: user } });
+          }}
+          className={styles.shopping_cart_container}
+        >
+          <FiShoppingCart className={styles.shopping_cart} />
+        </div>
+      )}
     </>
   );
 };
