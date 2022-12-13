@@ -1,7 +1,7 @@
 import styles from "./card.module.css"
-const Card = ({children,style}) => {
+const Card = ({children,style,name}) => {
   return (
-    <div style={style} className={styles.container}>
+    <div style={style} className={name ? styles.productsPage :styles.container}>
  {children}
     </div>
   )

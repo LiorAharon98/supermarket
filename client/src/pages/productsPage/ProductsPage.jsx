@@ -48,10 +48,10 @@ const ProductsPage = () => {
       <HeaderTag text={` ${changeLanguage("hello")} ${Object.keys(user).length > 0 ? user.username : ""}`} />
 
       <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
-      <Card style={{ flexWrap: "wrap", alignItems: "flex-start" }}>
+      <Card name={'productsPage'}>
         {productsFilter(toggleProducts).map((product, index) => {
           return (
-            <Products
+            <Products 
            
               key={index}
               {...product}

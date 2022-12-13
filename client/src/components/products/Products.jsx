@@ -21,7 +21,8 @@ const Products = ({ name, price, pictureUrl, addToCart, cart, removeFromCart }) 
         <button className={style.button} onClick={clickHandler.bind(this,'add')}>
           +
         </button>
-        <input className={style.input} placeholder={findCurrent.length} />
+        <p className={style.input}>{findCurrent.length}</p>
+      
 
         <button className={style.button} onClick={clickHandler}>
           -
