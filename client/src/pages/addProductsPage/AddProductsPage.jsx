@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
 import { useDataProvider } from "../../context/DataProvider";
 import HeaderTag from "../../components/header_tag/HeaderTag";
@@ -11,12 +10,14 @@ const AddProductsPage = ({ func }) => {
   const priceInp = useRef();
   const categoryInp = useRef();
   const imgInp = useRef();
+  const textAreaRef = useRef()
   const { addProducts, changeLanguage } = useDataProvider();
 
   const inp = [
     { type: "text", placeholder: "name", ref: nameInp },
     { type: "number", placeholder: "price", ref: priceInp },
     { type: "text", placeholder: "category", ref: categoryInp },
+ 
   ];
 
   const checkInp = (name, price, img) => {
@@ -33,9 +34,9 @@ const AddProductsPage = ({ func }) => {
     const name = nameInp.current.value;
     const price = priceInp.current.value;
     const category = categoryInp.current.value;
-
+    const description = textAreaRef.current.value
     const picture = imgInp.current.files[0];
-    const product = { name, price: Number(price), category };
+    const product = { name, price: Number(price), category,description };
 
     if (checkInp(name, price, picture)) return alert("incorrect details");
     addProducts(product, picture);
@@ -44,6 +45,7 @@ const AddProductsPage = ({ func }) => {
   return (
     <Card>
       <div>
+      
         <div className={style.add_product_container}>
           <HeaderTag text={"add product"} />
           {inp.map((input, index) => {
@@ -60,6 +62,8 @@ const AddProductsPage = ({ func }) => {
               </div>
             );
           })}
+          <label className={style.text_area_label} htmlFor="textArea">{changeLanguage('description')}</label>
+          <textarea ref={textAreaRef} id="textArea" className={style.text_area} ></textarea>
           <input ref={imgInp} type="file" id="inputFile" style={{ display: "none" }} />
           <div className={style.label_container}>
             <label className={style.label_inp_file} htmlFor="inputFile">

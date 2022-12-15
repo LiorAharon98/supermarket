@@ -48,3 +48,15 @@
   background-color: white;
   color: black;
 }
+.text_area{
+  height: 50px;
+  font-size: 15px;
+  border: 1px solid rgba(90, 169, 255, 0.924);
+  border-radius: 5px;
+  outline: none;
+  background-color: rgba(133, 197, 253, 0);
+}
+.text_area_label{
+  font-size: 20px;
+  padding-left: 10px;
+}

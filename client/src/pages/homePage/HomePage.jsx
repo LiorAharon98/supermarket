@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Button from "../../components/button/Button";
 import HeaderTag from "../../components/header_tag/HeaderTag";
+import Footer from "../../components/footer/Footer";
 import HomepageButtons from "../../components/homepage_buttons/HomepageButtons";
 import style from "./home-page.module.css";
 const HomePage = () => {
@@ -21,6 +22,7 @@ const HomePage = () => {
         )}
         <HomepageButtons toggle={toggle} />
       </div>
+          <Footer />
     </>
   );
 };

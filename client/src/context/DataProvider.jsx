@@ -44,7 +44,9 @@ const DataProvider = ({ children }) => {
     await uploadBytes(storageRef, picture);
 
     const pictureUrl = await getDownloadURL(storageRef);
+
     const finalProduct = {...addedProducts, pictureUrl};
+    console.log(finalProduct)
     await axios.post(`${baseUrl}/admin`, finalProduct);
     fetchData();
   };

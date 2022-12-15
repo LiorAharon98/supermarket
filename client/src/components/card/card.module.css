@@ -2,9 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 76.3vh;
-  /* padding-left: 20%;     */
-  /* width: 60%; */
+  min-height: 100vh;
+
 }
 
 .productsPage {
@@ -16,12 +15,11 @@
 }
 @media screen and (max-width: 768px) {
   .container {
-    
-    min-height: 90vh;
+    min-height: 94.5vh;
     padding: 0px;
     width: 100%;
   }
-  .productsPage{
+  .productsPage {
     width: 100%;
     padding: 0px;
   }

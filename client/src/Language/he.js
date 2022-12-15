@@ -68,6 +68,9 @@ const he_translation = {
   'has an account' : 'יש לך חשבון',
   'are you sure' : 'האם אתה בטוח',
   close : 'סגירה',
-  'you are going to' : 'אתה עומד לבצע'
+  'you are going to' : 'אתה עומד לבצע',
+  name : 'שם',
+  description : 'תיאור',
+  price : 'מחיר'
 }
 export default he_translation
