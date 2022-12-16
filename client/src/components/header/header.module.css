@@ -5,13 +5,15 @@
   justify-content: space-around;
 }
 .header_container {
-  width: 20%;
   list-style: none;
 }
-@media screen and (max-width :768px) {
-
-  .menu_container{
+@media screen and (max-width: 768px) {
+  .menu_container {
+    justify-content: space-between;
     position: sticky;
     top: 0px;
+  }
+  .header_container {
+    width: 20%;
   }
 }

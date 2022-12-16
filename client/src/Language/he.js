@@ -71,6 +71,12 @@ const he_translation = {
   'you are going to' : 'אתה עומד לבצע',
   name : 'שם',
   description : 'תיאור',
-  price : 'מחיר'
+  price : 'מחיר',
+  services : 'שירותים',
+  customers : 'לקוחות',
+  'online shopping' : 'קנייה ברשת',
+  chat : 'צאט',
+  contact : 'יצירת קשר',
+  'gift card' : 'תו קנייה'
 }
 export default he_translation
