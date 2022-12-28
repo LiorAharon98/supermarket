@@ -1,5 +1,5 @@
 import { useContext, createContext, useState, useEffect } from "react";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
@@ -16,7 +16,7 @@ const DataProvider = ({ children }) => {
   const [spinner, setSpinner] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
   const [user, setUser] = useState({});
- 
+
   const baseUrl = "https://node-js-supermarket.herokuapp.com/supermarket";
   const localhostUrl = "http://localhost:8000/supermarket";
   const fetchData = async () => {
@@ -39,27 +39,24 @@ const DataProvider = ({ children }) => {
   };
 
   const addProducts = async (addedProducts, picture) => {
-    const storageRef = ref(storage, `/products-images/${picture.name}`);
+    const storageRef = ref(storage, `/products-images/${addedProducts.name}`);
 
     await uploadBytes(storageRef, picture);
 
     const pictureUrl = await getDownloadURL(storageRef);
 
-    const finalProduct = {...addedProducts, pictureUrl};
-    console.log(finalProduct)
+    const finalProduct = { ...addedProducts, pictureUrl };
     await axios.post(`${baseUrl}/admin`, finalProduct);
     fetchData();
   };
   const deleteProduct = async (productName) => {
+    const storageRef = ref(storage, `/products-images/${productName}`);
     const product = { product: productName };
     await axios.delete(`${baseUrl}/admin`, {
       data: product,
-      headers: {
-        Accept: "application/json; charset=utf-8",
-        "Content-Type": "application/json",
-      },
     });
-    await fetchData();
+    await deleteObject(storageRef);
+    fetchData();
   };
   const addUser = (username, email, password) => {
     const user = {
@@ -80,7 +77,7 @@ const DataProvider = ({ children }) => {
 
   const userPaymentFunc = async (username, total) => {
     const user = { username, total };
-    await axios.post(`${baseUrl}/user/payment`, user);
+    await axios.post(`${localhostUrl}/user/payment`, user);
   };
 
   const updateProductPrice = async (updatePrice, productName) => {
@@ -109,10 +106,9 @@ const DataProvider = ({ children }) => {
   const changeModal = () => {
     setToggleModal(true);
   };
-  const closeModal = ()=>{
-  
+  const closeModal = () => {
     setToggleModal(false);
-  }
+  };
 
   const value = {
     setToggleModal,

@@ -77,6 +77,13 @@ const he_translation = {
   'online shopping' : 'קנייה ברשת',
   chat : 'צאט',
   contact : 'יצירת קשר',
-  'gift card' : 'תו קנייה'
+  'gift card' : 'תו קנייה',
+  english : 'אנגלית',
+  hebrew : 'עברית',
+  'card holder' : 'מחזיק הכרטיס',
+  'card number' : 'מספר הכרטיס',
+  month : 'שנה',
+  year : 'חודש',
+
 }
 export default he_translation

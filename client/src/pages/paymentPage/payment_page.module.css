@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 700px;
+}
+.payment_tag {
+  text-align: center;
+  margin: 0px;
+}
+
+.select {
+  outline: none;
+
+  width: 65px;
+  height: 25px;
+  border-radius: 10px;
+  border: none;
+  margin: 0px 15px 0px 15px
+}
+.option{
+  text-align: center;
+}

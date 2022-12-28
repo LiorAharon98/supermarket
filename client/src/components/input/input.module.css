@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: space-around;
   height: 130px;
+  width: 100%;
 }
 
 .inp_sign_up {

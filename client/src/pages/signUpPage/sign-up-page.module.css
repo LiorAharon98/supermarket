@@ -11,6 +11,14 @@
   border-radius: 10px;
 }
 
+.password_container{
+  display: flex;
+  align-items: center;
+}
+.password_icon{
+  font-size: 18px;
+  padding-right: 10px;
+}
 .error {
   text-align: center;
 }

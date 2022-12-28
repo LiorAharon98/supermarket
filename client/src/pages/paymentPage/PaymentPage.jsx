@@ -1,51 +1,83 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Button from "../../components/button/Button";
-import HeaderTag from "../../components/header_tag/HeaderTag";
-import { useDataProvider } from "../../context/DataProvider";
+import React, { useState } from "react";
 import Card from "../../components/card/Card";
-import style from "./payment-page.module.css";
+import styles from "./payment_page.module.css";
+import { useForm } from "react-hook-form";
+import Input from "../../components/input/Input";
+import Button from "../../components/button/Button";
 import Modal from "../../components/modal/Modal";
-import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useDataProvider } from "../../context/DataProvider";
 const PaymentPage = () => {
-  let total = 0;
-  const countTotal = (price) => {
-    total += price;
-  };
-  const { userPaymentFunc, changeLanguage, toggleModal, changeModal, closeModal, setToggleModal } = useDataProvider();
+  const [toggleModal, setToggleModal] = useState(false);
 
+  const months = new Array(12).fill(1);
+  const years = [2024, 2025, 2026, 2027, 2028, 2029, 2030];
   const navigate = useNavigate();
+  const { changeLanguage, userPaymentFunc, user } = useDataProvider();
   const { state } = useLocation();
-  const { user, cart } = state;
-  const clickHandler2=(e)=>{
-e.preventDefault()
-changeModal()
-  }
+  const { total } = state;
+  const {
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm({
+    cardHolder: "",
+    cardNumber: "",
+    "expiration date": "",
+    cvv: "",
+  });
   const clickHandler = (e) => {
-
-    userPaymentFunc(user.username, total);
-    setToggleModal(false);
+    e.preventDefault();
+    setToggleModal(true);
+  };
+  const inputData = async(data) => {
+    await userPaymentFunc(user.username, total);
     navigate("/");
+  };
+  const closeModal = (e) => {
+    e.preventDefault();
+    setToggleModal(false);
   };
 
   return (
     <Card>
-      <div className={style.payment_container}>
-        <HeaderTag text={"pay"} />
-        {cart.map((product, index) => {
-          countTotal(product.price);
-          return (
-            <div className={style.payment_products} key={index}>
-              <img className={style.img} src={product.pictureUrl} alt="error" />
-              <p className={style.product}>{changeLanguage(product.productName)}</p>
-              <p className={style.product}> {product.price}₪</p>
-            </div>
-          );
-        })}
-        <p id={style.total}> {total}₪</p>
-        <Button to={"/"} text={changeLanguage("pay")} onClick={clickHandler2} />
+      <Modal text={"pay"} closeModal={closeModal} toggleModal={toggleModal} onClick={handleSubmit(inputData)} />
+      <div className={styles.container}>
+        <h1 className={styles.payment_tag}>{changeLanguage("payment")}</h1>
+        <Input
+          control={control}
+          name={"card holder"}
+          rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
+        />
+        <Input control={control} name={"card number"} />
+        <div className={styles.select_container}>
+          {changeLanguage("month")}
+          <select className={styles.select}>
+            {months.map((month, index) => {
+              return (
+                <option className={styles.option} key={index}>
+                  {index + 1}
+                </option>
+              );
+            })}
+          </select>
+          {changeLanguage("year")}
+          <select className={styles.select}>
+            {years.map((year) => (
+              <option className={styles.option} key={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+        </div>
+        <Input
+          control={control}
+          name={"cvv"}
+          rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
+        />
+        <Button to={"/"} text={"pay"} onClick={clickHandler} />
       </div>
-      <Modal text={"pay"} onClick={clickHandler} toggleModal={toggleModal} closeModal={closeModal} />
     </Card>
   );
 };

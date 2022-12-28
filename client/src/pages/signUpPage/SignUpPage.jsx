@@ -8,6 +8,8 @@ import Button from "../../components/button/Button";
 import Input from "../../components/input/Input";
 import ErrorTag from "../../components/error_tag/ErrorTag";
 import HeaderTag from "../../components/header_tag/HeaderTag";
+import { MdOutlineVisibility } from "react-icons/md";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
 import Card from "../../components/card/Card";
 const SignUpPage = () => {
   const [toggleError, setToggleError] = useState("");
@@ -28,7 +30,11 @@ const SignUpPage = () => {
   const regex = "@gmail.com";
 
   const { addUser, changeLanguage, specificUser } = useDataProvider();
+  const [showPassword, setShowPassword] = useState("password");
 
+  const togglePassword = () => {
+    showPassword === "password" ? setShowPassword("text") : setShowPassword("password");
+  };
   const handleClick = async (data) => {
     const { username, email, password } = data;
     const user = await specificUser(username, password);
@@ -52,8 +58,19 @@ const SignUpPage = () => {
             control={control}
             rules={{ required: "fill please", validate: (value) => value.includes(regex) || "email not vaild" }}
           />
-          <Input name="password" control={control} rules={{ required: "fill please" }} />
+          <div className={style.password_container}>
+            <Input name="password" control={control} rules={{ required: "fill please" }} type={showPassword} />
+            {showPassword === "password" ? (
+           
+
+              <MdOutlineVisibility className={style.password_icon} onClick={togglePassword} />
+              
+              ) : (
+                <AiOutlineEyeInvisible className={style.password_icon} onClick={togglePassword} />
+                )}
+          </div>
           <Input
+            type={showPassword}
             name="confirm password"
             control={control}
             rules={{ required: "fill please", validate: (value) => value === pwd || "password not match" }}

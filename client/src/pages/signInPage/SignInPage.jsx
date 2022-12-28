@@ -8,6 +8,8 @@ import ErrorTag from "../../components/error_tag/ErrorTag";
 import Input from "../../components/input/Input";
 import style from "./sign-in-page.module.css";
 import Card from "../../components/card/Card";
+import { MdOutlineVisibility } from "react-icons/md";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
 const SignInPage = () => {
   const {
     control,
@@ -20,6 +22,10 @@ const SignInPage = () => {
   const { specificUser, changeLanguage,setUser } = useDataProvider();
   const navigate = useNavigate();
   const [errorDetails, setErrorDetails] = useState(false);
+  const [showPassword, setShowPassword] = useState("password");
+  const togglePassword = () => {
+    showPassword === "password" ? setShowPassword("text") : setShowPassword("password");
+  };
   const handleClick = async (data) => {
     const { username, password } = data;
     if (username === "Admin" && password === "1111") return navigate("/admin");
@@ -39,11 +45,18 @@ const SignInPage = () => {
             name="username"
             rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
           />
-          <Input
-            control={control}
-            name="password"
-            rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
-          />
+                <div className={style.password_container}>
+            <Input name="password" control={control} rules={{ required: "fill please" }} type={showPassword} />
+            {showPassword === "password" ? (
+           
+
+              <MdOutlineVisibility className={style.password_icon} onClick={togglePassword} />
+              
+              ) : (
+                <AiOutlineEyeInvisible className={style.password_icon} onClick={togglePassword} />
+                )}
+          </div>
+
           {errorDetails && <ErrorTag text={errorDetails} />}
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign in")} />
           <p className={style.register}>

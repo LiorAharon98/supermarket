@@ -3,7 +3,7 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import { useDataProvider } from "../../context/DataProvider";
 import styles from "./input.module.css";
-const Input = ({ name, control, rules }) => {
+const Input = ({ name, control, rules,type }) => {
   const { changeLanguage } = useDataProvider();
   return (
     <Controller
@@ -17,8 +17,9 @@ const Input = ({ name, control, rules }) => {
 
           <label className={styles.label} htmlFor={name}>{changeLanguage(name)}</label>
             <input
+            
             id={name}
-            type={name === "password" ? "password" : "text"}
+            type={type}
             className={error ? styles.inp_sign_up_error : styles.inp_sign_up}
             name={name}
             {...field}

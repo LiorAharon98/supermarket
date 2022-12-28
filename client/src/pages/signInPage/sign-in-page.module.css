@@ -10,6 +10,14 @@
   background: linear-gradient(to top,rgb(200, 240, 253),rgb(63, 185, 255));
   border-radius: 10px;
 }
+.password_container{
+  display: flex;
+  align-items: center;
+}
+.password_icon{
+  font-size: 18px;
+  padding-right: 10px;
+}
 .register{
   text-align: center;
 }

@@ -4,6 +4,7 @@
   align-items: center;
 }
 #button {
+  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
