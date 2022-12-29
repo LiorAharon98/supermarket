@@ -19,7 +19,7 @@ const SignInPage = () => {
     username: "",
     password: "",
   });
-  const { specificUser, changeLanguage,setUser } = useDataProvider();
+  const { specificUser, changeLanguage, setUser } = useDataProvider();
   const navigate = useNavigate();
   const [errorDetails, setErrorDetails] = useState(false);
   const [showPassword, setShowPassword] = useState("password");
@@ -37,34 +37,31 @@ const SignInPage = () => {
   };
   return (
     <Card>
-      <div>
         <div className={style.sign_in_container}>
-        <HeaderTag text={"sign in"} />
+          <HeaderTag text={"sign in"} />
           <Input
             control={control}
             name="username"
             rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
           />
-                <div className={style.password_container}>
+          <div className={style.password_container}>
             <Input name="password" control={control} rules={{ required: "fill please" }} type={showPassword} />
             {showPassword === "password" ? (
-           
-
               <MdOutlineVisibility className={style.password_icon} onClick={togglePassword} />
-              
-              ) : (
-                <AiOutlineEyeInvisible className={style.password_icon} onClick={togglePassword} />
-                )}
+            ) : (
+              <AiOutlineEyeInvisible className={style.password_icon} onClick={togglePassword} />
+            )}
           </div>
 
           {errorDetails && <ErrorTag text={errorDetails} />}
           <Button to={"/"} onClick={handleSubmit(handleClick)} text={changeLanguage("Sign in")} />
           <p className={style.register}>
-          {changeLanguage('doesn\'t has an account')}?
-      <Link style={{color :'white'}} to={'/user/sign-up'} >{changeLanguage('register')}</Link>
+            {changeLanguage("doesn't has an account")}?
+            <Link style={{ color: "white" }} to={"/user/sign-up"}>
+              {changeLanguage("register")}
+            </Link>
           </p>
         </div>
-      </div>
     </Card>
   );
 };

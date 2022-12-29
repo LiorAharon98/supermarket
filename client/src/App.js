@@ -12,6 +12,7 @@ import AddProductsPage from "./pages/addProductsPage/AddProductsPage";
 import { useDataProvider } from "./context/DataProvider";
 import LoadingScreen from "./components/loading_screen/LoadingScreen";
 import SelectedProduct from "./pages/selected_product/SelectedProduct";
+import NotFound from "./pages/404/NotFound";
 const App = () => {
   const { spinner } = useDataProvider();
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/add-product" element={<AddProductsPage />}></Route>
           <Route path="/user/order-details" element={<OrderDetails />}></Route>
           <Route path="/product" element={<SelectedProduct />}></Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </HashRouter>
     </>

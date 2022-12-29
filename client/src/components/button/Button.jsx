@@ -8,6 +8,7 @@ const Button = ({ text, onClick, to, style }) => {
     <div style={style} className={styles.button_container}>
       <Link id={styles.button} to={to} onClick={onClick}>
         {changeLanguage(text)}
+        
       </Link>
     </div>
   );

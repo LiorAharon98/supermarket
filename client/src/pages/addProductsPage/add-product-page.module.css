@@ -1,6 +1,6 @@
 .add_product_container {
   width: 350px;
-  height: 650px;
+  height: 750px;
   justify-content: space-around;
   background: linear-gradient(to top, rgb(67, 161, 255), rgb(237, 227, 227));
   display: flex;

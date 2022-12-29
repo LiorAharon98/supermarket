@@ -18,8 +18,9 @@ const AdminPage = () => {
   const [currentProductName, setCurrentProductName] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
-    const fetchUsers = () => {
-      axios.get(`${baseUrl}/admin`).then((response) => setUsers(response.data));
+    const fetchUsers = async () => {
+      const response = await axios.get(`${baseUrl}/admin`);
+      setUsers(response.data);
     };
     fetchUsers();
   }, []);

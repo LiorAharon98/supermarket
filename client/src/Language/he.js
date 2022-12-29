@@ -84,6 +84,7 @@ const he_translation = {
   'card number' : 'מספר הכרטיס',
   month : 'שנה',
   year : 'חודש',
+  'this route is not exist please go back to homepage' : 'הנתיב לא קיים נא לחזור לדף הבית'
 
 }
 export default he_translation
