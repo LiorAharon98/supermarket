@@ -1,34 +1,34 @@
 const router = require("express").Router();
 const errorsHandler = require("../utils/errorsHandler");
 const UserModel = require("../models/User");
+const bcrypt = require("bcrypt");
 
 router.post("/sign-up", async (req, res) => {
-  let body = req.body;
+  const body = req.body;
   try {
-    await UserModel.create({
-      username: body.username,
-      email: body.email,
-      password: body.password,
-      shoppingHistory: [],
-    });
-    res.send(body);
+    await UserModel.create(body);
   } catch (e) {
     return console.log("error");
   }
 });
 
 router.post("/sign-in", async (req, res) => {
-  const body = req.body;
-  const temp = await UserModel.find({ username: body.username });
-  res.json(temp);
+  const { username, password } = req.body;
+  const user = await UserModel.findOne({ username });
+  if (user) {
+    const auth = await bcrypt.compare(password, user.password);
+    if (auth) {
+      return res.json(user);
+    }
+  }
+  res.json(null);
 });
 
 router.post("/payment", async (req, res) => {
-  let body = req.body;
+  const body = req.body;
   const filter = { username: body.username };
   const update = { shoppingHistory: body.total };
-  const opts = { new: true };
-  await UserModel.findOneAndUpdate(filter, { $push: update }, opts);
+  await UserModel.findOneAndUpdate(filter, { $push: update });
 });
 
 module.exports = router;

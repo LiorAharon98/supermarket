@@ -8,7 +8,7 @@ const { setServerConfiguration } = require("./config");
 setServerConfiguration(app);
 mongoose.connect(
   process.env.MONGODB_URI ||
-    "mongodb+srv://liors-database:lior.ah98@cluster0.iybrzvm.mongodb.net/shopping-cart?retryWrites=true&w=majority"
+    "mongodb+srv://liors-database:lior.ah98@cluster0.iybrzvm.mongodb.net/supermarket?retryWrites=true&w=majority"
 );
 
 app.use("/supermarket", productRouter);
