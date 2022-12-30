@@ -70,14 +70,13 @@ const DataProvider = ({ children }) => {
   const specificUser = async (username, password) => {
     const user = { username, password };
     const axiosResponse = await axios.post(`${baseUrl}/user/sign-in`, user);
-    const response = await axiosResponse.data[0];
-    if (!response) return false;
-    return response;
+    if (!axiosResponse.data) return false;
+    return axiosResponse.data;
   };
 
   const userPaymentFunc = async (username, total) => {
     const user = { username, total };
-    await axios.post(`${localhostUrl}/user/payment`, user);
+    await axios.post(`${baseUrl}/user/payment`, user);
   };
 
   const updateProductPrice = async (updatePrice, productName) => {

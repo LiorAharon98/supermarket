@@ -15,7 +15,7 @@ const OrderDetails = () => {
   };
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { user, cart } = state;
+  const { cart } = state;
   const clickHandler2 = (e) => {
     e.preventDefault();
     changeModal();
@@ -28,7 +28,6 @@ const OrderDetails = () => {
   return (
     <Card>
       <div className={style.payment_container}>
-    
         {cart.map((product, index) => {
           countTotal(product.price);
           return (

@@ -67,7 +67,7 @@ const ProductsPage = () => {
       {cart.length > 0 && (
         <div
           onClick={() => {
-            navigate("/user/order-details", { state: { cart, user: user } });
+            navigate("/user/order-details", { state: { cart} });
           }}
           className={styles.shopping_cart_container}
         >

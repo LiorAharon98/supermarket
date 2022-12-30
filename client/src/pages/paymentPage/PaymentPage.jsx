@@ -31,8 +31,8 @@ const PaymentPage = () => {
     e.preventDefault();
     setToggleModal(true);
   };
-  const inputData = async(data) => {
-    await userPaymentFunc(user.username, total);
+  const inputData = async (data) => {
+    userPaymentFunc(user.username, total);
     navigate("/");
   };
   const closeModal = (e) => {
