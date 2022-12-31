@@ -21,7 +21,7 @@ const DataProvider = ({ children }) => {
   const localhostUrl = "http://localhost:8000/supermarket";
   const fetchData = async () => {
     setSpinner(true);
-    const response = await axios.get(baseUrl);
+    const response = await axios.get(localhostUrl);
     setProducts(response.data);
     setSpinner(false);
   };

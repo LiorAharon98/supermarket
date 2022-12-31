@@ -2,9 +2,13 @@ const router = require("express").Router();
 const ProductModel = require("../models/Product");
 const UserModel = require("../models/User");
 
+const allUsers = async () => {
+  const users = await ProductModel.find({});
+  return users;
+};
 router.get("/", async (req, res) => {
-  const products = await ProductModel.find({});
-  res.json(products);
+  const users = await allUsers();
+  res.json(users);
 });
 
 router.post("/admin", async (req, res) => {
@@ -20,7 +24,7 @@ router.delete("/admin", async (req, res) => {
 });
 
 router.get("/admin", async (req, res) => {
-  const users = await UserModel.find({});
+  const users = allUsers();
   res.json(users);
 });
 router.put("/admin", async (req, res) => {
