@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="border: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    ">
+
+      <h1 style=" color: black; text-align: center;" id="header" >thanks for shopping!</h1>
+      <h2 style=" color: black; text-align: center;"> <%= username %> the order has received and we will take care of it soon</h2>
+    </div>
+
+
+
+   <table style="
+   width: 95%; 
+   text-align: center;
+   " class="table_container">
+     
+      <% for( let i=0; i < cart.length; i++ ) { %>
+        <tr style="
+        border-radius: 5px;
+        margin-bottom: 2px;
+        " class="tr_container">
+          
+       
+
+         <img style="  border-radius: 10px;
+         
+          width: 80px;
+          height: 50px;" id="image" src=<%=cart[i].pictureUrl%> />
+         
+          
+          <td  style="color: black; width: 33%;"><%=cart[i].productName %></td>
+          <td style="color: black; width: 33%;"><%=cart[i].price %>₪</td>
+        </tr>
+        <% } %>
+      </table>
+
+      <h2 style="text-align: center;">enjoy!</h2>
+  </body>
+
+</html>
+
+

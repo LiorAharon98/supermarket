@@ -22,7 +22,7 @@ const OrderDetails = () => {
   };
   const clickHandler = (e) => {
     setToggleModal(false);
-    navigate("/user/payment", { state: { total } });
+    navigate("/user/payment", { state: { total,cart } });
   };
 
   return (

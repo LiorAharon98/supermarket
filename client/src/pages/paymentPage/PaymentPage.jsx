@@ -15,7 +15,7 @@ const PaymentPage = () => {
   const navigate = useNavigate();
   const { changeLanguage, userPaymentFunc, user } = useDataProvider();
   const { state } = useLocation();
-  const { total } = state;
+  const { total, cart } = state;
   const {
     handleSubmit,
     control,
@@ -27,12 +27,13 @@ const PaymentPage = () => {
     "expiration date": "",
     cvv: "",
   });
+
   const clickHandler = (e) => {
     e.preventDefault();
     setToggleModal(true);
   };
   const inputData = async (data) => {
-    userPaymentFunc(user.username, total);
+    userPaymentFunc(user.username, total, user.email, cart);
     navigate("/");
   };
   const closeModal = (e) => {
@@ -50,7 +51,12 @@ const PaymentPage = () => {
           name={"card holder"}
           rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}
         />
-        <Input control={control} name={"card number"} />
+        <Input
+          control={control}
+          name={"card number"}
+        
+          rules={{ required: "fill please", minLength: { value: 16, message: "should be at least 16 char" } }}
+        />
         <div className={styles.select_container}>
           {changeLanguage("month")}
           <select className={styles.select}>

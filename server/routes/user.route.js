@@ -2,6 +2,27 @@ const router = require("express").Router();
 const errorsHandler = require("../utils/errorsHandler");
 const UserModel = require("../models/User");
 const bcrypt = require("bcrypt");
+const nodeMailer = require("nodemailer");
+const ejs = require("ejs");
+
+const transporter = nodeMailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "lior.ah98@gmail.com",
+    pass: "rrqwaoersdvqkhzb",
+  },
+});
+const sendMail = async (email, username, cart) => {
+  const data = await ejs.renderFile("./views/index.ejs", { username, cart });
+
+  const mail_config = {
+    from: "lior.ah98@gmail.com",
+    to: email,
+    subject: "recipe of shopping",
+    html: data,
+  };
+  transporter.sendMail(mail_config);
+};
 
 router.post("/sign-up", async (req, res) => {
   const body = req.body;
@@ -25,10 +46,11 @@ router.post("/sign-in", async (req, res) => {
 });
 
 router.post("/payment", async (req, res) => {
-  const body = req.body;
-  const filter = { username: body.username };
-  const update = { shoppingHistory: body.total };
+  const { username, total, email, cart } = req.body;
+  const filter = { username };
+  const update = { shoppingHistory: total };
   await UserModel.findOneAndUpdate(filter, { $push: update });
+  sendMail(email, username, cart);
 });
 
 module.exports = router;

@@ -21,7 +21,7 @@ const DataProvider = ({ children }) => {
   const localhostUrl = "http://localhost:8000/supermarket";
   const fetchData = async () => {
     setSpinner(true);
-    const response = await axios.get(localhostUrl);
+    const response = await axios.get(baseUrl);
     setProducts(response.data);
     setSpinner(false);
   };
@@ -74,8 +74,8 @@ const DataProvider = ({ children }) => {
     return axiosResponse.data;
   };
 
-  const userPaymentFunc = async (username, total) => {
-    const user = { username, total };
+  const userPaymentFunc = async (username, total, email,cart) => {
+    const user = { username, total, email,cart };
     await axios.post(`${baseUrl}/user/payment`, user);
   };
 

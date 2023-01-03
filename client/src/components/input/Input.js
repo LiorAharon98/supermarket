@@ -8,6 +8,7 @@ const Input = ({ name, control, rules,type }) => {
   return (
     <Controller
       rules={rules}
+      
       control={control}
       name={name}
       defaultValue=""
@@ -22,6 +23,7 @@ const Input = ({ name, control, rules,type }) => {
             type={type}
             className={error ? styles.inp_sign_up_error : styles.inp_sign_up}
             name={name}
+            
             {...field}
             ></input>
             {error && <p className={styles.error}>{error.message}</p>}
