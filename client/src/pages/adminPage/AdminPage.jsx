@@ -80,6 +80,7 @@ const AdminPage = () => {
               <tr>
                 <td>{changeLanguage("username")}</td>
                 <td>{changeLanguage("email")}</td>
+                <td>{changeLanguage("last purchase")}</td>
               </tr>
               {users.map((user, index) => {
                 return <UsersPage key={index} {...user} />;

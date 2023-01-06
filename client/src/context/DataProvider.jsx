@@ -1,6 +1,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import axios from "axios";
+import {useCookies} from "react-cookie"
 import { useTranslation } from "react-i18next";
 
 import { storage } from "../firebase";
@@ -16,6 +17,7 @@ const DataProvider = ({ children }) => {
   const [spinner, setSpinner] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
   const [user, setUser] = useState({});
+  const [cookies,setCookies] = useCookies('')
 
   const baseUrl = "https://node-js-supermarket.herokuapp.com/supermarket";
   const localhostUrl = "http://localhost:8000/supermarket";
@@ -71,16 +73,20 @@ const DataProvider = ({ children }) => {
     const user = { username, password };
     const axiosResponse = await axios.post(`${baseUrl}/user/sign-in`, user);
     if (!axiosResponse.data) return false;
-    return axiosResponse.data;
+    setUser(axiosResponse.data[0]);
+    setCookies('jwt' , axiosResponse.data[1])
+    sessionStorage.setItem("key", JSON.stringify(axiosResponse.data[0]));
+
+    return axiosResponse.data
   };
 
   const userPaymentFunc = async (username, total, email,cart) => {
-    const user = { username, total, email,cart };
+    const user = { username, total, email,cart , token : cookies.jwt };
     await axios.post(`${baseUrl}/user/payment`, user);
   };
 
   const updateProductPrice = async (updatePrice, productName) => {
-    const product = { price: updatePrice, productName: productName };
+    const product = { price: updatePrice, productName , token : cookies.jwt };
     await axios.put(`${baseUrl}/admin`, product);
     fetchData();
   };
@@ -100,6 +106,7 @@ const DataProvider = ({ children }) => {
   };
   const logOut = () => {
     setUser({});
+    setCookies('jwt' , '')
     sessionStorage.removeItem("key");
   };
   const changeModal = () => {
