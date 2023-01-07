@@ -6,9 +6,9 @@ const nodeMailer = require("nodemailer");
 const ejs = require("ejs");
 const jwt = require("jsonwebtoken");
 
-const verifyTokenJwt =(token)=>{
-  return jwt.verify(token,'liors-secret')
-}
+const verifyTokenJwt = (token) => {
+  return jwt.verify(token, "liors-secret");
+};
 const transporter = nodeMailer.createTransport({
   service: "gmail",
   auth: {
@@ -33,7 +33,7 @@ router.post("/sign-up", async (req, res) => {
   try {
     await UserModel.create(body);
   } catch (e) {
-    return console.log("error");
+    return console.loge(e);
   }
 });
 
@@ -45,7 +45,6 @@ router.post("/sign-in", async (req, res) => {
     const final = [user, token];
     const auth = await bcrypt.compare(password, user.password);
     if (auth) {
-     
       return res.json(final);
     }
   }
@@ -53,10 +52,10 @@ router.post("/sign-in", async (req, res) => {
 });
 
 router.post("/payment", async (req, res) => {
-  const { username, total, email, cart,token } = req.body;
-  const filter = { _id : verifyTokenJwt(token) };
+  const { username, total, email, cart, token } = req.body;
+
   const update = { shoppingHistory: total };
-  await UserModel.findOneAndUpdate(filter, { $push: update });
+  await UserModel.findByIdAndUpdate(verifyTokenJwt(token), { $push: update });
   sendMail(email, username, cart);
 });
 

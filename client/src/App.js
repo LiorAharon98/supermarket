@@ -21,7 +21,6 @@ const App = () => {
 
       <HashRouter>
         <Header />
-
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/user/sign-in" element={<SignInPage />}></Route>
