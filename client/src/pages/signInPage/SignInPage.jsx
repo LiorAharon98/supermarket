@@ -19,13 +19,14 @@ const SignInPage = () => {
     username: "",
     password: "",
   });
-  const { specificUser, changeLanguage, setUser } = useDataProvider();
+  const { specificUser, changeLanguage } = useDataProvider();
   const navigate = useNavigate();
   const [errorDetails, setErrorDetails] = useState(false);
   const [showPassword, setShowPassword] = useState("password");
   const togglePassword = () => {
     showPassword === "password" ? setShowPassword("text") : setShowPassword("password");
   };
+  
   const handleClick = async (data) => {
     const { username, password } = data;
     if (username === "Admin" && password === "1111") return navigate("/admin");

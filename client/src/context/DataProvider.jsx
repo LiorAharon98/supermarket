@@ -1,7 +1,7 @@
 import { useContext, createContext, useState, useEffect } from "react";
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import axios from "axios";
-import {useCookies} from "react-cookie"
+import { useCookies } from "react-cookie";
 import { useTranslation } from "react-i18next";
 
 import { storage } from "../firebase";
@@ -17,7 +17,7 @@ const DataProvider = ({ children }) => {
   const [spinner, setSpinner] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
   const [user, setUser] = useState({});
-  const [cookies,setCookies] = useCookies('')
+  const [cookies, setCookies] = useCookies("");
 
   const baseUrl = "https://node-js-supermarket.herokuapp.com/supermarket";
   const localhostUrl = "http://localhost:8000/supermarket";
@@ -41,54 +41,76 @@ const DataProvider = ({ children }) => {
   };
 
   const addProducts = async (addedProducts, picture) => {
-    const storageRef = ref(storage, `/products-images/${addedProducts.name}`);
+    try {
+      const storageRef = ref(storage, `/products-images/${addedProducts.name}`);
 
-    await uploadBytes(storageRef, picture);
+      await uploadBytes(storageRef, picture);
 
-    const pictureUrl = await getDownloadURL(storageRef);
+      const pictureUrl = await getDownloadURL(storageRef);
 
-    const finalProduct = { ...addedProducts, pictureUrl };
-    await axios.post(`${baseUrl}/admin`, finalProduct);
-    fetchData();
+      const finalProduct = { ...addedProducts, pictureUrl };
+      await axios.post(`${baseUrl}/admin`, finalProduct);
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
   };
   const deleteProduct = async (productName) => {
-    const storageRef = ref(storage, `/products-images/${productName}`);
     const product = { product: productName };
-    await axios.delete(`${baseUrl}/admin`, {
-      data: product,
-    });
-    await deleteObject(storageRef);
-    fetchData();
+    try {
+      const storageRef = ref(storage, `/products-images/${productName}`);
+      await axios.delete(`${baseUrl}/admin`, {
+        data: product,
+      });
+      await deleteObject(storageRef);
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const addUser = (username, email, password) => {
+  const addUser = async (username, email, password) => {
     const user = {
       username,
       email,
       password,
       shoppingHistory: [],
     };
-    axios.post(`${baseUrl}/user/sign-up`, user);
+    try {
+      const response = await axios.post(`${baseUrl}/user/sign-up`, user);
+
+      return response.data ? true : false;
+    } catch (error) {
+      console.log(error);
+    }
   };
   const specificUser = async (username, password) => {
     const user = { username, password };
     const axiosResponse = await axios.post(`${baseUrl}/user/sign-in`, user);
     if (!axiosResponse.data) return false;
     setUser(axiosResponse.data[0]);
-    setCookies('jwt' , axiosResponse.data[1])
+    setCookies("jwt", axiosResponse.data[1]);
     sessionStorage.setItem("key", JSON.stringify(axiosResponse.data[0]));
 
-    return axiosResponse.data
+    return axiosResponse.data;
   };
 
-  const userPaymentFunc = async (username, total, email,cart) => {
-    const user = { username, total, email,cart , token : cookies.jwt };
-    await axios.post(`${baseUrl}/user/payment`, user);
+  const userPaymentFunc = async (username, total, email, cart) => {
+    const user = { username, total, email, cart, token: cookies.jwt };
+    try {
+      await axios.post(`${baseUrl}/user/payment`, user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const updateProductPrice = async (updatePrice, productName) => {
-    const product = { price: updatePrice, productName , token : cookies.jwt };
-    await axios.put(`${baseUrl}/admin`, product);
-    fetchData();
+    const product = { price: updatePrice, productName, token: cookies.jwt };
+    try {
+      await axios.put(`${baseUrl}/admin`, product);
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
   };
   const sortProductsByPrice = (sortPrice) => {
     products.sort((a, b) => {
@@ -106,7 +128,7 @@ const DataProvider = ({ children }) => {
   };
   const logOut = () => {
     setUser({});
-    setCookies('jwt' , '')
+    setCookies("jwt", "");
     sessionStorage.removeItem("key");
   };
   const changeModal = () => {
@@ -116,7 +138,9 @@ const DataProvider = ({ children }) => {
     setToggleModal(false);
   };
 
+
   const value = {
+    
     setToggleModal,
     toggleModal,
     changeModal,

@@ -12,15 +12,21 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/admin", async (req, res) => {
-  const body = req.body;
-
-  await ProductModel.create(body);
-  res.json("ok");
+  try {
+    await ProductModel.create(req.body);
+    res.json("ok");
+  } catch (error) {
+    console.log(error);
+  }
 });
 router.delete("/admin", async (req, res) => {
   let body = req.body.product;
-  await ProductModel.deleteOne({ name: body });
-  res.json("ok");
+  try {
+    await ProductModel.deleteOne({ name: body });
+    res.json("ok");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.get("/admin", async (req, res) => {
@@ -32,9 +38,12 @@ router.put("/admin", async (req, res) => {
   const { productName, price } = req.body;
   const filter = { name: productName };
   const update = { price: price };
-
-  await ProductModel.findOneAndUpdate(filter, update);
-  res.json("ok");
+  try {
+    await ProductModel.findOneAndUpdate(filter, update);
+    res.json("ok");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

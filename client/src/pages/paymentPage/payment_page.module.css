@@ -21,3 +21,23 @@
 .option{
   text-align: center;
 }
+
+.purchase_page{
+  background-color: rgba(0, 0, 0, 0.872);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.purchase_container{
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+height: 350px;
+width: 600px;
+}

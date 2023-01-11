@@ -37,10 +37,10 @@ const SignUpPage = () => {
   };
   const handleClick = async (data) => {
     const { username, email, password } = data;
-    const user = await specificUser(username, password);
-
-    if (user) return setToggleError("user already  exist");
-    addUser(username, email, password);
+  const response = await addUser(username, email, password);
+ if(!response)return setToggleError("user already  exist")
+  
+  
     navigate("/user/sign-in");
   };
   return (
@@ -61,13 +61,10 @@ const SignUpPage = () => {
           <div className={style.password_container}>
             <Input name="password" control={control} rules={{ required: "fill please" }} type={showPassword} />
             {showPassword === "password" ? (
-           
-
               <MdOutlineVisibility className={style.password_icon} onClick={togglePassword} />
-              
-              ) : (
-                <AiOutlineEyeInvisible className={style.password_icon} onClick={togglePassword} />
-                )}
+            ) : (
+              <AiOutlineEyeInvisible className={style.password_icon} onClick={togglePassword} />
+            )}
           </div>
           <Input
             type={showPassword}
