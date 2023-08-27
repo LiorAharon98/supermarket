@@ -46,6 +46,7 @@ router.post("/sign-in", async (req, res) => {
   const { username, password } = req.body;
   try {
     const user = await UserModel.findOne({ username });
+
     if (user) {
       const token = jwt.sign(user.id, "liors-secret");
       const final = [user, token];
@@ -62,10 +63,12 @@ router.post("/sign-in", async (req, res) => {
 
 router.post("/payment", async (req, res) => {
   const { username, total, email, cart, token } = req.body;
+
   try {
     const update = { shoppingHistory: total };
     await UserModel.findByIdAndUpdate(verifyTokenJwt(token), { $push: update });
-    sendMail(email, username, cart);
+    await sendMail(email, username, cart);
+    res.json('ok')
   } catch (error) {
     console.log(error);
   }
