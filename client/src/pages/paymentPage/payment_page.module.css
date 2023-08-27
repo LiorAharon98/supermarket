@@ -23,7 +23,8 @@
 }
 
 .purchase_page{
-  background-color: rgba(0, 0, 0, 0.872);
+  transition: 500ms;
+  background-color: rgba(0, 0, 0, 0.75);
   position: fixed;
   height: 100%;
   width: 100%;
@@ -40,4 +41,20 @@
   background-color: white;
 height: 350px;
 width: 600px;
+}
+.purchase_container_inactive{
+  display: none;
+  transition: 500ms;
+  height: 100%;
+  width: 50%;
+}
+
+.purchase_page_inactive{
+  width: 0px;
+  height: 0px;
+  transition: 500ms;
+}
+.purchase_tag{
+font-size: 20px;
+font-weight: bolder;
 }

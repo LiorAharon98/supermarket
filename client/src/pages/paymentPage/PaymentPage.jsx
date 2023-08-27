@@ -33,8 +33,8 @@ const PaymentPage = () => {
     setToggleModal(true);
   };
   const inputData = async (data) => {
-    userPaymentFunc(user.username, total, user.email, cart);
     setTogglePurchase(true);
+    await userPaymentFunc(user.username, total, user.email, cart);
     setTimeout(() => {
       navigate("/");
     }, 4000);
@@ -46,14 +46,13 @@ const PaymentPage = () => {
 
   return (
     <>
-      {togglePurchase && (
-        <div className={styles.purchase_page}>
-          <div className={styles.purchase_container}>
-            <h1>thank you an invoice sent to your mail</h1>
-            <h2>you will navigate to home page</h2>
-          </div>
+      <div className={togglePurchase ? styles.purchase_page : styles.purchase_page_inactive}>
+        <div className={togglePurchase ? styles.purchase_container : styles.purchase_container_inactive}>
+          <p className={styles.purchase_tag}>{changeLanguage("thank you an invoice sent to your mail")}</p>
+          <p className={styles.purchase_tag}>{changeLanguage("you will navigate to home page")}</p>
         </div>
-      )}
+      </div>
+
       <Card>
         <Modal text={"pay"} closeModal={closeModal} toggleModal={toggleModal} onClick={handleSubmit(inputData)} />
 
@@ -66,8 +65,13 @@ const PaymentPage = () => {
           />
           <Input
             control={control}
+            type="number"
             name={"card number"}
-            rules={{ required: "fill please", minLength: { value: 16, message: "should be at least 16 char" } }}
+            rules={{
+              required: "fill please",
+              minLength: { value: 16, message: "should be 16 numbers" },
+              maxLength: { value: 16, message: "should be 16 numbers" },
+            }}
           />
           <div className={styles.select_container}>
             {changeLanguage("month")}
@@ -90,6 +94,7 @@ const PaymentPage = () => {
             </select>
           </div>
           <Input
+            type={"number"}
             control={control}
             name={"cvv"}
             rules={{ required: "fill please", minLength: { value: 3, message: "should be at least 3 char" } }}

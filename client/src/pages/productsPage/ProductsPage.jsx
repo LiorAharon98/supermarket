@@ -8,6 +8,7 @@ import { useState } from "react";
 import HeaderTag from "../../components/header_tag/HeaderTag";
 import Card from "../../components/card/Card";
 import { FiShoppingCart } from "react-icons/fi";
+import { useEffect } from "react";
 const ProductsPage = () => {
   const { products, changeLanguage, user } = useDataProvider();
 
@@ -38,6 +39,7 @@ const ProductsPage = () => {
     }
     setCart(cart2);
   };
+
   const productsFilter = (filter) => {
     return filter === "all"
       ? products.map((product) => product)
@@ -50,9 +52,9 @@ const ProductsPage = () => {
       <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
       <Card name={'productsPage'}>
         {productsFilter(toggleProducts).map((product, index) => {
+         console.log(product.name)
           return (
             <Products 
-           
               key={index}
               {...product}
               addToCart={addToCart}

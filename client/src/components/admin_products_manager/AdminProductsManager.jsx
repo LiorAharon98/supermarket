@@ -3,8 +3,9 @@ import { useState } from "react";
 import { useDataProvider } from "../../context/DataProvider";
 import Button from "../button/Button";
 import style from "./admin_products_manager.module.css";
+
+
 import UpdatePrice from "../update_price/UpdatePrice";
-import Modal from "../modal/Modal";
 const AdminProductsManager = ({ name, price, pictureUrl,setCurrentProductName }) => {
   const { deleteProduct, changeLanguage, changeModal, toggleModal, closeModal } = useDataProvider();
   const [updatePriceToggle, setUpdatePriceToggle] = useState(false);

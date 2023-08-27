@@ -16,7 +16,10 @@ const DataProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [spinner, setSpinner] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(() => {
+    const data = sessionStorage.getItem("key");
+    return data ? JSON.parse(data) : {};
+  });
   const [cookies, setCookies] = useCookies("");
 
   const baseUrl = "https://node-js-supermarket.herokuapp.com/supermarket";
@@ -28,8 +31,6 @@ const DataProvider = ({ children }) => {
     setSpinner(false);
   };
   useEffect(() => {
-    const data = sessionStorage.getItem("key");
-    if (data) setUser(JSON.parse(data));
     fetchData();
   }, []);
   useEffect(() => {
@@ -96,6 +97,7 @@ const DataProvider = ({ children }) => {
 
   const userPaymentFunc = async (username, total, email, cart) => {
     const user = { username, total, email, cart, token: cookies.jwt };
+
     try {
       await axios.post(`${baseUrl}/user/payment`, user);
     } catch (error) {
@@ -138,9 +140,7 @@ const DataProvider = ({ children }) => {
     setToggleModal(false);
   };
 
-
   const value = {
-    
     setToggleModal,
     toggleModal,
     changeModal,
