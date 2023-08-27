@@ -24,9 +24,10 @@ const DataProvider = ({ children }) => {
 
   const baseUrl = "https://node-js-supermarket.herokuapp.com/supermarket";
   const localhostUrl = "http://localhost:8000/supermarket";
+  const server = process.env.NODE_ENV === "development" ? localhostUrl : baseUrl;
   const fetchData = async () => {
     setSpinner(true);
-    const response = await axios.get(baseUrl);
+    const response = await axios.get(server);
     setProducts(response.data);
     setSpinner(false);
   };
@@ -50,7 +51,7 @@ const DataProvider = ({ children }) => {
       const pictureUrl = await getDownloadURL(storageRef);
 
       const finalProduct = { ...addedProducts, pictureUrl };
-      await axios.post(`${baseUrl}/admin`, finalProduct);
+      await axios.post(`${server}/admin`, finalProduct);
       fetchData();
     } catch (error) {
       console.log(error);
@@ -60,7 +61,7 @@ const DataProvider = ({ children }) => {
     const product = { product: productName };
     try {
       const storageRef = ref(storage, `/products-images/${productName}`);
-      await axios.delete(`${baseUrl}/admin`, {
+      await axios.delete(`${server}/admin`, {
         data: product,
       });
       await deleteObject(storageRef);
@@ -77,7 +78,7 @@ const DataProvider = ({ children }) => {
       shoppingHistory: [],
     };
     try {
-      const response = await axios.post(`${baseUrl}/user/sign-up`, user);
+      const response = await axios.post(`${server}/user/sign-up`, user);
 
       return response.data ? true : false;
     } catch (error) {
@@ -86,7 +87,7 @@ const DataProvider = ({ children }) => {
   };
   const specificUser = async (username, password) => {
     const user = { username, password };
-    const axiosResponse = await axios.post(`${baseUrl}/user/sign-in`, user);
+    const axiosResponse = await axios.post(`${server}/user/sign-in`, user);
     if (!axiosResponse.data) return false;
     setUser(axiosResponse.data[0]);
     setCookies("jwt", axiosResponse.data[1]);
@@ -99,7 +100,7 @@ const DataProvider = ({ children }) => {
     const user = { username, total, email, cart, token: cookies.jwt };
 
     try {
-      await axios.post(`${baseUrl}/user/payment`, user);
+      await axios.post(`${server}/user/payment`, user);
     } catch (error) {
       console.log(error);
     }
@@ -108,7 +109,7 @@ const DataProvider = ({ children }) => {
   const updateProductPrice = async (updatePrice, productName) => {
     const product = { price: updatePrice, productName, token: cookies.jwt };
     try {
-      await axios.put(`${baseUrl}/admin`, product);
+      await axios.put(`${server}/admin`, product);
       fetchData();
     } catch (error) {
       console.log(error);
@@ -155,7 +156,7 @@ const DataProvider = ({ children }) => {
     specificUser,
     userPaymentFunc,
     products,
-    baseUrl,
+    server,
     changeLanguage,
     spinner,
     user,

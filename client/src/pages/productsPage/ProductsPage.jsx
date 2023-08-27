@@ -52,7 +52,6 @@ const ProductsPage = () => {
       <ProductCategory setSort={setSort} categoryFilter={categoryFilter} />
       <Card name={'productsPage'}>
         {productsFilter(toggleProducts).map((product, index) => {
-         console.log(product.name)
           return (
             <Products 
               key={index}
