@@ -4,6 +4,7 @@ const multer = require("multer");
 
 const setServerConfiguration = (app) => {
     app.use(express.urlencoded({ extended: true }));
+    
     app.use('/public',express.static("public"));
     app.use(express.json());
     app.use(cors());

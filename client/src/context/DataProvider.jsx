@@ -21,10 +21,8 @@ const DataProvider = ({ children }) => {
     return data ? JSON.parse(data) : {};
   });
   const [cookies, setCookies] = useCookies("");
-
-  const baseUrl = "https://node-js-supermarket.herokuapp.com/supermarket";
-  const localhostUrl = "http://localhost:8000/supermarket";
-  const server = process.env.NODE_ENV === "development" ? localhostUrl : baseUrl;
+  const server =
+    process.env.NODE_ENV === "development" ? process.env.REACT_APP_LOCAL_URL : process.env.REACT_APP_PRODUCTION_URL;
   const fetchData = async () => {
     setSpinner(true);
     const response = await axios.get(server);
@@ -54,6 +52,7 @@ const DataProvider = ({ children }) => {
       await axios.post(`${server}/admin`, finalProduct);
       fetchData();
     } catch (error) {
+      await axios.post(`${server}/admin`, { ...addedProducts, pictureUrl :'Failed' });
       console.log(error);
     }
   };

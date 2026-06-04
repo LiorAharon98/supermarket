@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/admin", async (req, res) => {
+ 
   try {
     await ProductModel.create(req.body);
     res.json("ok");

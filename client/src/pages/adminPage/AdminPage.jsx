@@ -11,17 +11,18 @@ import { useEffect } from "react";
 import Card from "../../components/card/Card";
 import AddProductsPage from "../addProductsPage/AddProductsPage";
 const AdminPage = () => {
-  const { products, changeLanguage, baseUrl, changeModal, toggleModal, closeModal, deleteProduct } = useDataProvider();
+  const { products, changeLanguage, server, toggleModal, closeModal, deleteProduct } = useDataProvider();
   const [users, setUsers] = useState();
   const [toggleAdminOptions, setToggleAdminOption] = useState(0);
   const [displayOption, setDisplayOption] = useState(false);
   const [currentProductName, setCurrentProductName] = useState("");
+
   const navigate = useNavigate();
+  const fetchUsers = async () => {
+    const response = await axios.get(`${server}/admin`);
+    setUsers(response.data);
+  };
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await axios.get(`${baseUrl}/admin`);
-      setUsers(response.data);
-    };
     fetchUsers();
   }, []);
   const displayCategoryFunc = () => {
