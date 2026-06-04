@@ -15,10 +15,13 @@ require("dotenv").config();
 setServerConfiguration(app);
 mongoose.connect(process.env.NODE_ENV === "production" ? process.env.MONGODB_URI : process.env.MONGODB_URI_LOCAL);
 
+app.get("/", (req, res) => {
+  res.send("Api is alive!");
+});
 app.use("/supermarket", productRouter);
 
 app.use("/supermarket/user", userRouter);
 
-app.listen(process.env.PORT,()=>{
-    console.log('server is up')
+app.listen(process.env.PORT, () => {
+  console.log("server is up");
 });
